@@ -20,6 +20,7 @@ export default function App() {
   const [activeSection, setActiveSection] = useState('home');
   const [isConsultationOpen, setIsConsultationOpen] = useState(false);
   const [selectedServiceForConsultation, setSelectedServiceForConsultation] = useState<string | undefined>(undefined);
+  const [scrollProgress, setScrollProgress] = useState(0);
 
   const handleNavigate = (sectionId: string) => {
     setActiveSection(sectionId);
@@ -39,9 +40,18 @@ export default function App() {
     }
   };
 
-  // Scroll spy to keep active section in sync
+  // Scroll spy & reading progress indicator
   React.useEffect(() => {
     const handleScroll = () => {
+      // Calculate reading progress across document height
+      const totalScrollable = document.documentElement.scrollHeight - window.innerHeight;
+      if (totalScrollable > 0) {
+        const currentProgress = (window.scrollY / totalScrollable) * 100;
+        setScrollProgress(Math.min(100, Math.max(0, currentProgress)));
+      } else {
+        setScrollProgress(0);
+      }
+
       const sections = ['home', 'about', 'services', 'portfolio', 'multimedia', 'endorsements', 'downloads', 'contact'];
       const scrollPosition = window.scrollY + 120;
 
@@ -63,6 +73,8 @@ export default function App() {
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
+    // Initial call to set state
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -73,6 +85,21 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-white text-slate-900 flex flex-col font-sans selection:bg-[#d89e28]/30 selection:text-[#0d2137]">
+      {/* Fixed Slim Scroll Reading Progress Indicator */}
+      <div 
+        className="fixed top-0 left-0 right-0 z-[100] h-[3px] bg-slate-900/10 pointer-events-none"
+        role="progressbar"
+        aria-valuenow={Math.round(scrollProgress)}
+        aria-valuemin={0}
+        aria-valuemax={100}
+        aria-label="Reading progress"
+      >
+        <div 
+          className="h-full bg-gradient-to-r from-[#d89e28] via-[#e5b147] to-[#d89e28] transition-[width] duration-100 ease-out shadow-[0_0_8px_rgba(216,158,40,0.6)]"
+          style={{ width: `${scrollProgress}%` }}
+        />
+      </div>
+
       {/* 1. Top Bar */}
       <TopBar />
 

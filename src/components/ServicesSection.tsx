@@ -267,7 +267,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
               <div
                 key={service.id}
                 onClick={() => setActiveModalService(service)}
-                className="group bg-white rounded-none p-5 sm:p-6 border border-slate-200 hover:border-[#d89e28] shadow-[0_2px_12px_rgba(0,0,0,0.03)] hover:shadow-[0_8px_24px_rgba(13,33,55,0.08)] active:scale-[0.99] transition-all duration-200 cursor-pointer flex flex-col justify-between"
+                className="group bg-white rounded-none p-4 xs:p-5 sm:p-6 border border-slate-200 hover:border-[#d89e28] shadow-[0_2px_12px_rgba(0,0,0,0.03)] hover:shadow-[0_8px_24px_rgba(13,33,55,0.08)] active:scale-[0.99] transition-all duration-200 cursor-pointer flex flex-col justify-between"
               >
                 <div>
                   <div className="flex items-start gap-3.5 mb-3.5">

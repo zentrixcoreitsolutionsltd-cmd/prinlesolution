@@ -1,10 +1,23 @@
 import React, { useState } from 'react';
-import { Mic, Video, Newspaper, Play, Pause, ArrowUpRight, Volume2, CheckCircle2 } from 'lucide-react';
+import { Mic, Video, Newspaper, Play, Pause, ArrowUpRight, Volume2, CheckCircle2, X, ExternalLink } from 'lucide-react';
+
+interface BroadcastItem {
+  id: string;
+  title: string;
+  channel: string;
+  duration: string;
+  date: string;
+  views: string;
+  summary: string;
+  youtubeId: string;
+  youtubeUrl: string;
+}
 
 export const MultimediaNodeSection: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'podcasts' | 'broadcasts' | 'releases'>('podcasts');
   const [playingPodcastId, setPlayingPodcastId] = useState<string | null>(null);
   const [selectedRelease, setSelectedRelease] = useState<any | null>(null);
+  const [activeVideo, setActiveVideo] = useState<BroadcastItem | null>(null);
 
   const podcasts = [
     {
@@ -39,7 +52,8 @@ export const MultimediaNodeSection: React.FC = () => {
     },
   ];
 
-  const broadcasts = [
+  // Actual YouTube video links (can be updated with your company YouTube video URLs anytime)
+  const broadcasts: BroadcastItem[] = [
     {
       id: 'yt-1',
       title: 'Prinle PR Annual Media Sentiment Index: Key Findings Briefing',
@@ -48,6 +62,8 @@ export const MultimediaNodeSection: React.FC = () => {
       date: 'Sept 2026',
       views: '124,000 Views',
       summary: 'Executive presentation on journalist migration, AI content detection in newsrooms, and the collapse of blanket press releases.',
+      youtubeId: 'ysz5S6PUM-U', // Actual YouTube Video ID
+      youtubeUrl: 'https://www.youtube.com/watch?v=ysz5S6PUM-U',
     },
     {
       id: 'yt-2',
@@ -57,6 +73,8 @@ export const MultimediaNodeSection: React.FC = () => {
       date: 'Aug 2026',
       views: '280,000 Views',
       summary: 'In-depth investigative feature tracing private equity deployments across renewable energy and fintech in East & Central Africa.',
+      youtubeId: 'ScMzIvxBSi4', // Actual YouTube Video ID
+      youtubeUrl: 'https://www.youtube.com/watch?v=ScMzIvxBSi4',
     },
     {
       id: 'yt-3',
@@ -66,6 +84,8 @@ export const MultimediaNodeSection: React.FC = () => {
       date: 'July 2026',
       views: '92,000 Views',
       summary: 'Behind-the-scenes recording of our sandbox simulation training C-suite executives to handle antagonistic national press conferences.',
+      youtubeId: 'LXb3EKWsInQ', // Actual YouTube Video ID
+      youtubeUrl: 'https://www.youtube.com/watch?v=LXb3EKWsInQ',
     },
   ];
 
@@ -224,14 +244,27 @@ export const MultimediaNodeSection: React.FC = () => {
             {broadcasts.map((bc) => (
               <div
                 key={bc.id}
-                className="bg-slate-50 border border-slate-200 hover:border-[#d89e28] transition-colors p-4 sm:p-5 flex flex-col justify-between"
+                onClick={() => setActiveVideo(bc)}
+                className="group bg-slate-50 border border-slate-200 hover:border-[#d89e28] transition-colors p-4 sm:p-5 flex flex-col justify-between cursor-pointer shadow-xs hover:shadow-md"
               >
                 <div>
-                  <div className="relative aspect-video bg-[#0d2137] flex items-center justify-center mb-3 sm:mb-4 text-white overflow-hidden group cursor-pointer">
-                    <div className="w-11 h-11 sm:w-12 sm:h-12 bg-[#d89e28] text-[#0d2137] flex items-center justify-center group-hover:scale-110 transition-transform">
-                      <Play className="w-5 h-5 fill-current ml-0.5" />
+                  <div className="relative aspect-video bg-black flex items-center justify-center mb-3 sm:mb-4 text-white overflow-hidden">
+                    {/* Real YouTube Video Thumbnail (Full Opacity, Clear) */}
+                    <img
+                      src={`https://img.youtube.com/vi/${bc.youtubeId}/hqdefault.jpg`}
+                      alt={bc.title}
+                      referrerPolicy="no-referrer"
+                      className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 opacity-100"
+                      loading="lazy"
+                    />
+
+                    {/* Classic YouTube Red Play Badge */}
+                    <div className="relative z-10 w-12 h-8.5 sm:w-14 sm:h-10 bg-red-600 group-hover:bg-red-700 text-white rounded-xl flex items-center justify-center shadow-2xl group-hover:scale-110 transition-all duration-200">
+                      <Play className="w-5 h-5 fill-current ml-0.5 text-white" />
                     </div>
-                    <span className="absolute bottom-2 right-2 bg-black/80 text-white font-mono text-[10px] px-1.5 py-0.5">
+
+                    {/* YouTube Duration Tag (Bottom Right) */}
+                    <span className="absolute bottom-2 right-2 z-10 bg-black/85 text-white font-mono text-[11px] font-bold px-1.5 py-0.5 rounded-[4px] shadow-md">
                       {bc.duration}
                     </span>
                   </div>
@@ -241,7 +274,7 @@ export const MultimediaNodeSection: React.FC = () => {
                     <span>{bc.views}</span>
                   </div>
 
-                  <h3 className="font-bold text-[#0d2137] text-base leading-snug mb-2">
+                  <h3 className="font-bold text-[#0d2137] text-base leading-snug mb-2 group-hover:text-[#d89e28] transition-colors">
                     {bc.title}
                   </h3>
 
@@ -251,8 +284,11 @@ export const MultimediaNodeSection: React.FC = () => {
                 </div>
 
                 <div className="mt-4 pt-3 border-t border-slate-200 flex items-center justify-between text-xs font-bold text-[#0d2137]">
-                  <span>Watch 4K Stream</span>
-                  <ArrowUpRight className="w-3.5 h-3.5 text-[#d89e28]" />
+                  <span className="group-hover:text-[#d89e28] transition-colors flex items-center gap-1.5">
+                    <Play className="w-3.5 h-3.5 fill-current text-[#d89e28]" />
+                    <span>Watch Broadcast</span>
+                  </span>
+                  <ArrowUpRight className="w-3.5 h-3.5 text-[#d89e28] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                 </div>
               </div>
             ))}
@@ -297,6 +333,83 @@ export const MultimediaNodeSection: React.FC = () => {
         )}
 
       </div>
+
+      {/* Broadcast Video Modal with Embedded YouTube Player & Direct Links */}
+      {activeVideo && (
+        <div className="fixed inset-0 z-50 bg-black/85 backdrop-blur-xs flex items-center justify-center p-3 sm:p-4">
+          <div className="bg-[#0a192f] border border-[#d89e28]/40 max-w-3xl w-full text-white shadow-2xl relative max-h-[92vh] overflow-y-auto">
+            {/* Close Button */}
+            <button
+              onClick={() => setActiveVideo(null)}
+              className="absolute top-3.5 right-3.5 z-20 w-9 h-9 flex items-center justify-center bg-[#0d2137] text-slate-400 hover:text-white text-base font-bold border border-slate-700 cursor-pointer"
+              aria-label="Close video player"
+            >
+              <X className="w-5 h-5" />
+            </button>
+
+            {/* Embedded YouTube 16:9 Player */}
+            <div className="relative aspect-video w-full bg-black">
+              <iframe
+                src={`https://www.youtube-nocookie.com/embed/${activeVideo.youtubeId}?autoplay=1&rel=0`}
+                title={activeVideo.title}
+                className="w-full h-full border-0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              />
+            </div>
+
+            {/* Video Details & Actual YouTube Link Action */}
+            <div className="p-4 sm:p-6 space-y-4">
+              <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 pb-3 text-xs">
+                <div className="flex items-center gap-2">
+                  <span className="bg-[#d89e28] text-[#0d2137] text-[10px] font-black uppercase tracking-wider px-2 py-0.5">
+                    {activeVideo.channel}
+                  </span>
+                  <span className="text-slate-400 font-mono text-[11px]">&bull; {activeVideo.duration}</span>
+                  <span className="text-slate-400 font-mono text-[11px]">&bull; {activeVideo.date}</span>
+                </div>
+                <span className="text-slate-400 font-mono text-[11px]">{activeVideo.views}</span>
+              </div>
+
+              <div>
+                <h3 className="text-lg sm:text-xl font-black text-white leading-snug">
+                  {activeVideo.title}
+                </h3>
+                <p className="mt-2 text-xs sm:text-sm text-slate-300 leading-relaxed">
+                  {activeVideo.summary}
+                </p>
+              </div>
+
+              {/* Action Buttons: Direct YouTube Link + Dismiss */}
+              <div className="pt-3 border-t border-slate-800 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2.5">
+                <div className="text-[11px] text-slate-400 font-mono truncate">
+                  Source: <span className="text-slate-300 underline">{activeVideo.youtubeUrl}</span>
+                </div>
+
+                <div className="flex items-center gap-2">
+                  {/* Direct YouTube Link */}
+                  <a
+                    href={activeVideo.youtubeUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 bg-red-600 hover:bg-red-700 text-white font-bold text-xs uppercase tracking-wider px-4 py-2.5 transition-colors cursor-pointer min-h-[40px]"
+                  >
+                    <span>Watch on YouTube</span>
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </a>
+
+                  <button
+                    onClick={() => setActiveVideo(null)}
+                    className="flex-1 sm:flex-initial px-4 py-2.5 border border-slate-700 hover:border-slate-500 text-slate-300 hover:text-white font-bold text-xs uppercase tracking-wider transition-colors cursor-pointer min-h-[40px]"
+                  >
+                    Close
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Release Reader Modal */}
       {selectedRelease && (

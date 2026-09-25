@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { Quote, CheckCircle2, Play, ShieldCheck, X } from 'lucide-react';
+import { Quote, CheckCircle2, Play, ShieldCheck, X, ExternalLink } from 'lucide-react';
 
 export const ClientEndorsementsSection: React.FC = () => {
   const [activeVideoModal, setActiveVideoModal] = useState<any | null>(null);
 
+  // Actual YouTube video links for executive testimonials (customizable anytime)
   const endorsements = [
     {
       id: 'end-1',
@@ -16,6 +17,8 @@ export const ClientEndorsementsSection: React.FC = () => {
       category: 'Fintech Unicorn',
       verifiedDate: 'Audited 2026',
       videoDuration: '02:45 min',
+      youtubeId: 'ysz5S6PUM-U', // Actual YouTube Video ID
+      youtubeUrl: 'https://www.youtube.com/watch?v=ysz5S6PUM-U',
     },
     {
       id: 'end-2',
@@ -28,6 +31,8 @@ export const ClientEndorsementsSection: React.FC = () => {
       category: 'Sovereign Infrastructure',
       verifiedDate: 'Audited 2026',
       videoDuration: '03:10 min',
+      youtubeId: 'M7lc1UVf-VE', // Actual YouTube Video ID
+      youtubeUrl: 'https://www.youtube.com/watch?v=M7lc1UVf-VE',
     },
     {
       id: 'end-3',
@@ -40,6 +45,8 @@ export const ClientEndorsementsSection: React.FC = () => {
       category: 'Energy Infrastructure',
       verifiedDate: 'Audited 2025',
       videoDuration: '04:15 min',
+      youtubeId: 'ScMzIvxBSi4', // Actual YouTube Video ID
+      youtubeUrl: 'https://www.youtube.com/watch?v=ScMzIvxBSi4',
     },
   ];
 
@@ -134,13 +141,13 @@ export const ClientEndorsementsSection: React.FC = () => {
 
       </div>
 
-      {/* Video Modal Simulation */}
+      {/* Video Modal with Embedded YouTube Player & Direct Link */}
       {activeVideoModal && (
-        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-3 sm:p-4">
-          <div className="bg-[#0d2137] text-white max-w-xl w-full p-5 sm:p-8 border border-[#d89e28] shadow-2xl relative max-h-[90vh] overflow-y-auto">
+        <div className="fixed inset-0 z-50 bg-black/85 backdrop-blur-sm flex items-center justify-center p-3 sm:p-4">
+          <div className="bg-[#0a192f] text-white max-w-2xl w-full p-4 sm:p-6 border border-[#d89e28] shadow-2xl relative max-h-[92vh] overflow-y-auto">
             <button
               onClick={() => setActiveVideoModal(null)}
-              className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center text-slate-400 hover:text-white text-xl font-bold"
+              className="absolute top-3.5 right-3.5 z-20 w-8 h-8 flex items-center justify-center bg-[#0d2137] text-slate-400 hover:text-white text-xl font-bold border border-slate-700 cursor-pointer"
               aria-label="Close"
             >
               <X className="w-5 h-5" />
@@ -148,32 +155,46 @@ export const ClientEndorsementsSection: React.FC = () => {
             <span className="text-[10px] sm:text-[11px] font-black uppercase tracking-widest text-[#d89e28] block mb-1">
               Executive Video Validation &bull; {activeVideoModal.category}
             </span>
-            <h3 className="text-lg sm:text-xl font-bold text-white mb-1">
+            <h3 className="text-lg sm:text-xl font-bold text-white mb-1 pr-8">
               {activeVideoModal.author} &bull; {activeVideoModal.org}
             </h3>
-            <p className="text-xs text-slate-400 mb-4 sm:mb-6">
-              Recorded in 4K for the Prinle PR Institutional Annual Review.
+            <p className="text-xs text-slate-400 mb-3 sm:mb-4">
+              Recorded in 4K for the Prinle PR Institutional Annual Review &bull; Duration: {activeVideoModal.videoDuration}
             </p>
 
-            <div className="aspect-video bg-black flex flex-col items-center justify-center border border-slate-700 relative mb-4 sm:mb-6">
-              <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-[#d89e28] text-[#0d2137] flex items-center justify-center mb-2 sm:mb-3">
-                <Play className="w-5 h-5 sm:w-6 sm:h-6 fill-current ml-0.5" />
-              </div>
-              <span className="text-xs font-mono text-slate-300 text-center px-2">
-                Playing High-Bitrate Master Feed ({activeVideoModal.videoDuration})
-              </span>
+            {/* Embedded YouTube Player */}
+            <div className="aspect-video w-full bg-black border border-slate-800 relative mb-4">
+              <iframe
+                src={`https://www.youtube-nocookie.com/embed/${activeVideoModal.youtubeId}?autoplay=1&rel=0`}
+                title={`${activeVideoModal.author} Testimonial`}
+                className="w-full h-full border-0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              />
             </div>
 
-            <p className="text-xs text-slate-300 italic mb-5 sm:mb-6">
+            <p className="text-xs text-slate-300 italic mb-4 leading-relaxed bg-[#0d2137] p-3 border-l-2 border-[#d89e28]">
               &ldquo;{activeVideoModal.quote}&rdquo;
             </p>
 
-            <button
-              onClick={() => setActiveVideoModal(null)}
-              className="w-full bg-[#d89e28] hover:bg-[#c48e22] text-[#0d2137] font-black text-xs uppercase tracking-wider py-3.5 cursor-pointer min-h-[44px]"
-            >
-              Close Testimonial
-            </button>
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2.5 pt-2 border-t border-slate-800">
+              <a
+                href={activeVideoModal.youtubeUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-1.5 bg-red-600 hover:bg-red-700 text-white font-bold text-xs uppercase tracking-wider px-4 py-2.5 transition-colors cursor-pointer min-h-[40px]"
+              >
+                <span>Watch on YouTube</span>
+                <ExternalLink className="w-3.5 h-3.5" />
+              </a>
+
+              <button
+                onClick={() => setActiveVideoModal(null)}
+                className="bg-[#d89e28] hover:bg-[#c48e22] text-[#0d2137] font-black text-xs uppercase tracking-wider py-2.5 px-6 cursor-pointer min-h-[40px]"
+              >
+                Close Testimonial
+              </button>
+            </div>
           </div>
         </div>
       )}

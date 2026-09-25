@@ -101,20 +101,26 @@ export const Navbar: React.FC<NavbarProps> = ({
         </button>
 
         {/* Desktop Nav Links (Visible from lg: 1024px upwards) */}
-        <nav className="hidden lg:flex items-center justify-center gap-1.5 xl:gap-3 2xl:gap-5 flex-1 min-w-0 px-2 text-[11px] xl:text-[12px] font-bold tracking-normal">
+        <nav className="hidden lg:flex items-center justify-center gap-0.5 xl:gap-2.5 2xl:gap-4 flex-1 min-w-0 px-1 xl:px-2 text-[10px] xl:text-[11.5px] 2xl:text-[12px] font-bold tracking-normal">
           {navItems.map((item) => {
             const isActive = activeSection === item.id;
             return (
               <button
                 key={item.id}
                 onClick={() => handleNavClick(item.id)}
-                className={`relative py-2 px-2 transition-colors uppercase whitespace-nowrap shrink-0 cursor-pointer font-extrabold ${
+                className={`relative py-2 px-1.5 xl:px-2 transition-colors uppercase whitespace-nowrap shrink-0 cursor-pointer font-extrabold ${
                   isActive
                     ? 'text-[#d89e28]'
                     : 'text-[#0d2137] hover:text-[#d89e28]'
                 }`}
               >
-                {item.label}
+                {item.id === 'services' ? (
+                  <span>SERVICES<span className="hidden xl:inline"> MATRIX</span></span>
+                ) : item.id === 'contact' ? (
+                  <span>CONTACT<span className="hidden xl:inline"> &amp; INTAKE</span></span>
+                ) : (
+                  <span>{item.label}</span>
+                )}
                 {isActive && (
                   <span className="absolute bottom-0 left-1 right-1 h-[2.5px] bg-[#d89e28]" />
                 )}
@@ -160,13 +166,13 @@ export const Navbar: React.FC<NavbarProps> = ({
         <>
           {/* Backdrop for closing by clicking outside */}
           <div 
-            className="fixed inset-0 top-[57px] sm:top-[65px] bg-slate-950/60 backdrop-blur-xs z-40 transition-opacity"
+            className="fixed inset-0 top-[50px] sm:top-[60px] bg-slate-950/60 backdrop-blur-xs z-40 transition-opacity"
             onClick={() => setMobileMenuOpen(false)}
             aria-hidden="true"
           />
 
           {/* Dropdown Menu Container */}
-          <div className="relative z-50 lg:hidden bg-white border-t border-slate-200 shadow-2xl max-h-[calc(100vh-65px)] overflow-y-auto">
+          <div className="relative z-50 lg:hidden bg-white border-t border-slate-200 shadow-2xl max-h-[calc(100dvh-60px)] overflow-y-auto">
             {/* Header info bar inside menu */}
             <div className="px-4 py-2.5 bg-slate-50 border-b border-slate-200 flex items-center justify-between">
               <span className="text-[10px] font-mono font-black uppercase tracking-widest text-[#d89e28]">
