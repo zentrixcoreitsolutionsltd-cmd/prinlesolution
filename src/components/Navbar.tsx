@@ -134,7 +134,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           {/* Quick Proposal Action Button (Desktop & Tablet) */}
           <button
             onClick={onOpenConsultation}
-            className="hidden sm:inline-flex items-center justify-center gap-1.5 bg-[#d89e28] hover:bg-[#c48e22] active:scale-[0.98] text-[#0d2137] font-black text-xs uppercase tracking-wider px-3.5 sm:px-4 2xl:px-6 py-2.5 rounded-none shadow-xs transition-all duration-150 cursor-pointer whitespace-nowrap min-h-[40px]"
+            className="hidden sm:inline-flex items-center justify-center gap-1.5 bg-[#d89e28] hover:bg-[#c48e22] active:scale-[0.98] text-[#0d2137] font-black text-xs uppercase tracking-wider px-4 sm:px-5 2xl:px-6 py-2.5 rounded-xl shadow-sm hover:shadow-md hover:-translate-y-0.5 border border-amber-300/50 transition-all duration-200 cursor-pointer whitespace-nowrap min-h-[40px]"
           >
             <Lock className="w-3.5 h-3.5" />
             <span>REQUEST PROPOSAL</span>
@@ -144,9 +144,9 @@ export const Navbar: React.FC<NavbarProps> = ({
           <button
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className={`lg:hidden w-11 h-11 flex items-center justify-center transition-colors cursor-pointer border ${
+            className={`lg:hidden w-11 h-11 rounded-xl flex items-center justify-center transition-all cursor-pointer border ${
               mobileMenuOpen 
-                ? 'bg-[#0d2137] text-[#d89e28] border-[#0d2137]' 
+                ? 'bg-[#0d2137] text-[#d89e28] border-[#0d2137] shadow-sm' 
                 : 'bg-white text-[#0d2137] hover:text-[#d89e28] hover:bg-slate-50 border-slate-300'
             }`}
             aria-label={mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
@@ -232,33 +232,33 @@ export const Navbar: React.FC<NavbarProps> = ({
             </div>
 
             {/* Quick Action CTAs */}
-            <div className="p-3 sm:p-4 bg-slate-50 border-t border-slate-200 space-y-2">
+            <div className="p-3 sm:p-4 bg-slate-50 border-t border-slate-200 space-y-2.5">
               <button
                 type="button"
                 onClick={() => {
                   setMobileMenuOpen(false);
                   onOpenConsultation();
                 }}
-                className="w-full bg-[#d89e28] hover:bg-[#c48e22] active:scale-[0.98] text-[#0d2137] font-black text-xs uppercase tracking-wider py-3.5 text-center shadow-xs cursor-pointer min-h-[44px] flex items-center justify-center gap-1.5"
+                className="w-full bg-gradient-to-r from-[#d89e28] to-[#e5b147] hover:from-[#c48e22] hover:to-[#d89e28] active:scale-[0.98] text-[#0d2137] font-black text-xs uppercase tracking-wider py-3.5 text-center shadow-md rounded-xl cursor-pointer min-h-[44px] flex items-center justify-center gap-2 border border-amber-300/40"
               >
                 <Lock className="w-3.5 h-3.5" />
                 <span>REQUEST BESPOKE PROPOSAL</span>
               </button>
 
-              <div className="grid grid-cols-2 gap-2 pt-1">
+              <div className="grid grid-cols-2 gap-2.5 pt-0.5">
                 <a
                   href="https://wa.me/254725128059?text=Hello%20Prinle%20PR%20Solutions,%20I%20would%20like%20to%20request%20an%20executive%20consultation."
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-[#25D366] hover:bg-[#20b858] text-[#0d2137] font-extrabold text-[11px] uppercase tracking-wider py-2.5 px-2 text-center flex items-center justify-center gap-1.5 min-h-[38px]"
+                  className="bg-[#25D366] hover:bg-[#20b858] text-[#0d2137] font-extrabold text-[11px] uppercase tracking-wider py-2.5 px-3 text-center flex items-center justify-center gap-1.5 min-h-[40px] rounded-xl shadow-xs transition-colors"
                 >
-                  <MessageCircle className="w-3.5 h-3.5 fill-current text-[#0d2137]" />
+                  <MessageCircle className="w-4 h-4 fill-current text-[#0d2137]" />
                   <span className="truncate">WhatsApp</span>
                 </a>
 
                 <a
                   href="tel:0725128059"
-                  className="bg-[#0d2137] hover:bg-[#15304f] text-white font-bold text-[11px] uppercase tracking-wider py-2.5 px-2 text-center flex items-center justify-center gap-1.5 min-h-[38px]"
+                  className="bg-[#0d2137] hover:bg-[#15304f] text-white font-bold text-[11px] uppercase tracking-wider py-2.5 px-3 text-center flex items-center justify-center gap-1.5 min-h-[40px] rounded-xl shadow-xs transition-colors border border-slate-700/50"
                 >
                   <PhoneCall className="w-3.5 h-3.5 text-[#d89e28]" />
                   <span className="truncate">Call Hotline</span>

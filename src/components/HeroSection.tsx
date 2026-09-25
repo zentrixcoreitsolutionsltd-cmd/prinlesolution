@@ -166,21 +166,21 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
       {/* LEFT CORNER ARROW (Desktop / Tablet) */}
       <button
         onClick={handlePrevSlide}
-        className="hidden lg:flex absolute left-2 xl:left-4 top-1/2 -translate-y-1/2 z-30 w-9 h-12 xl:w-10 xl:h-14 bg-[#0d2137] hover:bg-[#15304f] active:scale-95 text-white hover:text-[#d89e28] items-center justify-center shadow-lg transition-all duration-150 cursor-pointer border-r-2 border-[#d89e28]"
+        className="hidden lg:flex absolute left-3 xl:left-5 top-1/2 -translate-y-1/2 z-30 w-11 h-14 bg-[#0d2137]/90 hover:bg-[#15304f] active:scale-95 text-white hover:text-[#d89e28] items-center justify-center shadow-xl hover:shadow-2xl transition-all duration-200 cursor-pointer rounded-2xl border border-amber-400/40 backdrop-blur-xs"
         aria-label="Previous Slide"
         title="Previous Slide"
       >
-        <ChevronLeft className="w-5 h-5 xl:w-6 xl:h-6" />
+        <ChevronLeft className="w-6 h-6" />
       </button>
 
       {/* RIGHT CORNER ARROW (Desktop / Tablet) */}
       <button
         onClick={handleNextSlide}
-        className="hidden lg:flex absolute right-2 xl:right-4 top-1/2 -translate-y-1/2 z-30 w-9 h-12 xl:w-10 xl:h-14 bg-[#0d2137] hover:bg-[#15304f] active:scale-95 text-white hover:text-[#d89e28] items-center justify-center shadow-lg transition-all duration-150 cursor-pointer border-l-2 border-[#d89e28]"
+        className="hidden lg:flex absolute right-3 xl:right-5 top-1/2 -translate-y-1/2 z-30 w-11 h-14 bg-[#0d2137]/90 hover:bg-[#15304f] active:scale-95 text-white hover:text-[#d89e28] items-center justify-center shadow-xl hover:shadow-2xl transition-all duration-200 cursor-pointer rounded-2xl border border-amber-400/40 backdrop-blur-xs"
         aria-label="Next Slide"
         title="Next Slide"
       >
-        <ChevronRight className="w-5 h-5 xl:w-6 xl:h-6" />
+        <ChevronRight className="w-6 h-6" />
       </button>
 
       {/* INNER CONTENT WRAPPER - Flex Column that utilizes 100% of height cleanly */}
@@ -281,17 +281,17 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             </div>
 
             {/* Primary Action Buttons */}
-            <div className="mt-2 sm:mt-3.5 flex flex-row items-center gap-1.5 xs:gap-2 sm:gap-3">
+            <div className="mt-2 sm:mt-3.5 flex flex-row items-center gap-2 sm:gap-3">
               <button
                 onClick={onOpenConsultation}
-                className="bg-[#d89e28] hover:bg-[#c48e22] active:scale-[0.98] text-[#0d2137] font-black text-[9.5px] xs:text-[10.5px] sm:text-xs uppercase tracking-wider px-3 xs:px-4 sm:px-6 py-2 xs:py-2.5 sm:py-3 shadow-xs transition-all duration-150 cursor-pointer text-center justify-center flex items-center shrink-0 min-h-[36px] xs:min-h-[40px]"
+                className="bg-gradient-to-r from-[#d89e28] to-[#e5b147] hover:from-[#c48e22] hover:to-[#d89e28] active:scale-[0.98] text-[#0d2137] font-black text-[9.5px] xs:text-[10.5px] sm:text-xs uppercase tracking-wider px-4 xs:px-5 sm:px-7 py-2.5 xs:py-3 rounded-xl shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-150 cursor-pointer text-center justify-center flex items-center shrink-0 min-h-[38px] xs:min-h-[42px] border border-amber-300/40"
               >
                 SCHEDULE CONSULTATION
               </button>
 
               <button
                 onClick={onExploreServices}
-                className="bg-[#0d2137] hover:bg-[#15304f] active:scale-[0.98] text-white font-black text-[9.5px] xs:text-[10.5px] sm:text-xs uppercase tracking-wider px-2.5 xs:px-3.5 sm:px-5 py-2 xs:py-2.5 sm:py-3 shadow-xs transition-all duration-150 cursor-pointer text-center justify-center flex items-center shrink-0 min-h-[36px] xs:min-h-[40px]"
+                className="bg-[#0d2137] hover:bg-[#15304f] active:scale-[0.98] text-white font-extrabold text-[9.5px] xs:text-[10.5px] sm:text-xs uppercase tracking-wider px-3.5 xs:px-4.5 sm:px-6 py-2.5 xs:py-3 rounded-xl shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-150 cursor-pointer text-center justify-center flex items-center shrink-0 min-h-[38px] xs:min-h-[42px] border border-slate-700/60"
               >
                 EXPLORE SERVICES
               </button>
@@ -426,7 +426,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                   {/* Step 5 Action Button */}
                   <button
                     onClick={onOpenConsultation}
-                    className="bg-[#d89e28] hover:bg-[#c48e22] text-[#0d2137] text-[6.5px] xs:text-[7.5px] sm:text-[9px] font-black uppercase tracking-wider px-1.5 xs:px-2 sm:px-2.5 py-0.5 sm:py-1 whitespace-nowrap text-center shrink-0 cursor-pointer shadow-xs transition-colors"
+                    className="bg-[#d89e28] hover:bg-[#c48e22] text-[#0d2137] text-[6.5px] xs:text-[7.5px] sm:text-[9px] font-black uppercase tracking-wider px-2 xs:px-2.5 sm:px-3 py-0.5 sm:py-1 whitespace-nowrap text-center shrink-0 cursor-pointer shadow-sm rounded-md transition-colors"
                   >
                     {currentSlide.node5}
                   </button>
@@ -447,10 +447,10 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               <button
                 key={s.id}
                 onClick={() => handleSelectSlide(index)}
-                className={`px-1.5 xs:px-2 py-0.5 text-[8.5px] xs:text-[9.5px] sm:text-[10px] font-bold transition-all cursor-pointer ${
+                className={`px-2 py-0.5 text-[8.5px] xs:text-[9.5px] sm:text-[10px] font-bold transition-all cursor-pointer rounded-md ${
                   activeSlide === index
-                    ? 'bg-[#0d2137] text-[#d89e28]'
-                    : 'text-[#0d2137]/70 hover:text-[#0d2137] bg-white/40 hover:bg-white/70'
+                    ? 'bg-[#0d2137] text-[#d89e28] shadow-xs'
+                    : 'text-[#0d2137]/70 hover:text-[#0d2137] bg-white/50 hover:bg-white/80'
                 }`}
                 aria-label={`Jump to slide ${index + 1}`}
               >

@@ -132,13 +132,13 @@ export const MultimediaNodeSection: React.FC = () => {
           </div>
           
           {/* Node Tab Switcher - Mobile scrollable */}
-          <div className="flex items-center gap-1 bg-slate-100 p-1 border border-slate-200 overflow-x-auto no-scrollbar shrink-0 self-start md:self-auto">
+          <div className="flex items-center gap-1.5 bg-slate-100 p-1.5 border border-slate-200/80 rounded-2xl overflow-x-auto no-scrollbar shrink-0 self-start md:self-auto shadow-xs">
             <button
               onClick={() => setActiveTab('podcasts')}
-              className={`flex items-center gap-2 px-3.5 sm:px-4 py-2 text-[11px] sm:text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer whitespace-nowrap min-h-[40px] ${
+              className={`flex items-center gap-2 px-4 py-2.5 text-[11px] sm:text-xs font-bold uppercase tracking-wider transition-all duration-150 cursor-pointer whitespace-nowrap min-h-[40px] rounded-xl ${
                 activeTab === 'podcasts'
-                  ? 'bg-[#0d2137] text-white shadow-xs'
-                  : 'text-slate-600 hover:text-[#0d2137]'
+                  ? 'bg-[#0d2137] text-white shadow-sm'
+                  : 'text-slate-600 hover:text-[#0d2137] hover:bg-slate-200/60'
               }`}
             >
               <Mic className="w-3.5 h-3.5 text-[#d89e28]" />
@@ -147,10 +147,10 @@ export const MultimediaNodeSection: React.FC = () => {
 
             <button
               onClick={() => setActiveTab('broadcasts')}
-              className={`flex items-center gap-2 px-3.5 sm:px-4 py-2 text-[11px] sm:text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer whitespace-nowrap min-h-[40px] ${
+              className={`flex items-center gap-2 px-4 py-2.5 text-[11px] sm:text-xs font-bold uppercase tracking-wider transition-all duration-150 cursor-pointer whitespace-nowrap min-h-[40px] rounded-xl ${
                 activeTab === 'broadcasts'
-                  ? 'bg-[#0d2137] text-white shadow-xs'
-                  : 'text-slate-600 hover:text-[#0d2137]'
+                  ? 'bg-[#0d2137] text-white shadow-sm'
+                  : 'text-slate-600 hover:text-[#0d2137] hover:bg-slate-200/60'
               }`}
             >
               <Video className="w-3.5 h-3.5 text-[#d89e28]" />
@@ -159,10 +159,10 @@ export const MultimediaNodeSection: React.FC = () => {
 
             <button
               onClick={() => setActiveTab('releases')}
-              className={`flex items-center gap-2 px-3.5 sm:px-4 py-2 text-[11px] sm:text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer whitespace-nowrap min-h-[40px] ${
+              className={`flex items-center gap-2 px-4 py-2.5 text-[11px] sm:text-xs font-bold uppercase tracking-wider transition-all duration-150 cursor-pointer whitespace-nowrap min-h-[40px] rounded-xl ${
                 activeTab === 'releases'
-                  ? 'bg-[#0d2137] text-white shadow-xs'
-                  : 'text-slate-600 hover:text-[#0d2137]'
+                  ? 'bg-[#0d2137] text-white shadow-sm'
+                  : 'text-slate-600 hover:text-[#0d2137] hover:bg-slate-200/60'
               }`}
             >
               <Newspaper className="w-3.5 h-3.5 text-[#d89e28]" />
@@ -179,16 +179,16 @@ export const MultimediaNodeSection: React.FC = () => {
               return (
                 <div
                   key={pod.id}
-                  className="bg-slate-50 border border-slate-200 p-4 sm:p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 sm:gap-6 hover:border-[#d89e28] transition-colors"
+                  className="bg-slate-50 border border-slate-200/80 rounded-2xl p-4 sm:p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 sm:gap-6 hover:border-[#d89e28] transition-all shadow-xs hover:shadow-md"
                 >
                   <div className="flex items-start gap-3 sm:gap-4 flex-1">
                     {/* Play / Pause Button - Touch target 48x48 */}
                     <button
                       onClick={() => setPlayingPodcastId(isPlaying ? null : pod.id)}
-                      className={`w-12 h-12 shrink-0 flex items-center justify-center font-bold transition-transform cursor-pointer ${
+                      className={`w-12 h-12 shrink-0 flex items-center justify-center font-bold transition-all rounded-2xl cursor-pointer shadow-sm active:scale-95 ${
                         isPlaying
-                          ? 'bg-[#d89e28] text-[#0d2137]'
-                          : 'bg-[#0d2137] text-white hover:bg-[#15304f]'
+                          ? 'bg-[#d89e28] text-[#0d2137] shadow-md shadow-[#d89e28]/25'
+                          : 'bg-[#0d2137] text-white hover:bg-[#15304f] hover:shadow-md'
                       }`}
                       aria-label={isPlaying ? 'Pause podcast' : 'Play podcast'}
                     >
@@ -215,7 +215,7 @@ export const MultimediaNodeSection: React.FC = () => {
                         {pod.summary}
                       </p>
                       {isPlaying && (
-                        <div className="mt-3 flex items-center gap-2 text-xs font-mono text-[#d89e28] bg-[#0d2137] p-2 inline-flex">
+                        <div className="mt-3 flex items-center gap-2 text-xs font-mono text-[#d89e28] bg-[#0d2137] px-3 py-1.5 rounded-lg inline-flex">
                           <Volume2 className="w-3.5 h-3.5 animate-pulse shrink-0" />
                           <span className="text-[11px]">Streaming audio feed: 256kbps Studio Master (Simulated)</span>
                         </div>
@@ -226,7 +226,7 @@ export const MultimediaNodeSection: React.FC = () => {
                   <div className="shrink-0 flex items-center gap-3 w-full md:w-auto justify-end pt-2 md:pt-0 border-t md:border-0 border-slate-200">
                     <button
                       onClick={() => setPlayingPodcastId(isPlaying ? null : pod.id)}
-                      className="text-xs font-bold uppercase tracking-wider text-[#0d2137] hover:text-[#d89e28] inline-flex items-center gap-1 cursor-pointer min-h-[38px]"
+                      className="text-xs font-bold uppercase tracking-wider text-[#0d2137] hover:text-[#d89e28] inline-flex items-center gap-1.5 cursor-pointer min-h-[38px] px-3 py-1.5 rounded-lg hover:bg-slate-100 transition-colors"
                     >
                       <span>{isPlaying ? 'Pause' : 'Listen Now'}</span>
                       <ArrowUpRight className="w-3.5 h-3.5 text-[#d89e28]" />
@@ -245,26 +245,26 @@ export const MultimediaNodeSection: React.FC = () => {
               <div
                 key={bc.id}
                 onClick={() => setActiveVideo(bc)}
-                className="group bg-slate-50 border border-slate-200 hover:border-[#d89e28] transition-colors p-4 sm:p-5 flex flex-col justify-between cursor-pointer shadow-xs hover:shadow-md"
+                className="group bg-slate-50 border border-slate-200 hover:border-[#d89e28] transition-all p-4 sm:p-5 flex flex-col justify-between cursor-pointer shadow-xs hover:shadow-lg rounded-2xl active:scale-[0.99]"
               >
                 <div>
-                  <div className="relative aspect-video bg-black flex items-center justify-center mb-3 sm:mb-4 text-white overflow-hidden">
-                    {/* Real YouTube Video Thumbnail (Full Opacity, Clear) */}
+                  <div className="relative aspect-video bg-black flex items-center justify-center mb-3 sm:mb-4 text-white overflow-hidden rounded-xl">
+                    {/* Real YouTube Video Thumbnail (Zero hover scale/distortion, rock-solid stable) */}
                     <img
                       src={`https://img.youtube.com/vi/${bc.youtubeId}/hqdefault.jpg`}
                       alt={bc.title}
                       referrerPolicy="no-referrer"
-                      className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 opacity-100"
+                      className="absolute inset-0 w-full h-full object-cover opacity-100"
                       loading="lazy"
                     />
 
                     {/* Classic YouTube Red Play Badge */}
-                    <div className="relative z-10 w-12 h-8.5 sm:w-14 sm:h-10 bg-red-600 group-hover:bg-red-700 text-white rounded-xl flex items-center justify-center shadow-2xl group-hover:scale-110 transition-all duration-200">
+                    <div className="relative z-10 w-13 h-9 sm:w-15 sm:h-10 bg-red-600 group-hover:bg-red-700 text-white rounded-xl flex items-center justify-center shadow-2xl group-hover:scale-110 transition-all duration-200">
                       <Play className="w-5 h-5 fill-current ml-0.5 text-white" />
                     </div>
 
                     {/* YouTube Duration Tag (Bottom Right) */}
-                    <span className="absolute bottom-2 right-2 z-10 bg-black/85 text-white font-mono text-[11px] font-bold px-1.5 py-0.5 rounded-[4px] shadow-md">
+                    <span className="absolute bottom-2 right-2 z-10 bg-black/90 text-white font-mono text-[11px] font-bold px-2 py-0.5 rounded-md shadow-md">
                       {bc.duration}
                     </span>
                   </div>
@@ -301,7 +301,7 @@ export const MultimediaNodeSection: React.FC = () => {
             {releases.map((rel) => (
               <div
                 key={rel.id}
-                className="bg-slate-50 border border-slate-200 p-4 sm:p-6 hover:border-[#d89e28] transition-colors flex flex-col sm:flex-row sm:items-center justify-between gap-4"
+                className="bg-slate-50 border border-slate-200 hover:border-[#d89e28] transition-all p-4 sm:p-6 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-xs hover:shadow-md"
               >
                 <div className="flex-1 min-w-0">
                   <div className="flex flex-wrap items-center gap-2 sm:gap-3 text-xs mb-1">
@@ -323,7 +323,7 @@ export const MultimediaNodeSection: React.FC = () => {
 
                 <button
                   onClick={() => setSelectedRelease(rel)}
-                  className="w-full sm:w-auto bg-[#0d2137] hover:bg-[#15304f] active:scale-[0.98] text-white font-bold text-xs uppercase tracking-wider px-5 py-3 rounded-none shrink-0 cursor-pointer min-h-[44px] flex items-center justify-center text-center"
+                  className="w-full sm:w-auto bg-[#0d2137] hover:bg-[#15304f] active:scale-[0.98] text-white font-bold text-xs uppercase tracking-wider px-5 py-3 rounded-xl shadow-sm hover:shadow-md transition-all shrink-0 cursor-pointer min-h-[44px] flex items-center justify-center text-center"
                 >
                   Read Release
                 </button>
@@ -337,18 +337,18 @@ export const MultimediaNodeSection: React.FC = () => {
       {/* Broadcast Video Modal with Embedded YouTube Player & Direct Links */}
       {activeVideo && (
         <div className="fixed inset-0 z-50 bg-black/85 backdrop-blur-xs flex items-center justify-center p-3 sm:p-4">
-          <div className="bg-[#0a192f] border border-[#d89e28]/40 max-w-3xl w-full text-white shadow-2xl relative max-h-[92vh] overflow-y-auto">
+          <div className="bg-[#0a192f] border border-[#d89e28]/50 max-w-3xl w-full text-white shadow-2xl relative max-h-[92vh] overflow-y-auto rounded-2xl">
             {/* Close Button */}
             <button
               onClick={() => setActiveVideo(null)}
-              className="absolute top-3.5 right-3.5 z-20 w-9 h-9 flex items-center justify-center bg-[#0d2137] text-slate-400 hover:text-white text-base font-bold border border-slate-700 cursor-pointer"
+              className="absolute top-3.5 right-3.5 z-20 w-9 h-9 rounded-full flex items-center justify-center bg-[#0d2137]/90 text-slate-300 hover:text-white text-base font-bold border border-slate-700 hover:border-slate-500 cursor-pointer shadow-md transition-colors"
               aria-label="Close video player"
             >
               <X className="w-5 h-5" />
             </button>
 
             {/* Embedded YouTube 16:9 Player */}
-            <div className="relative aspect-video w-full bg-black">
+            <div className="relative aspect-video w-full bg-black rounded-t-2xl overflow-hidden">
               <iframe
                 src={`https://www.youtube-nocookie.com/embed/${activeVideo.youtubeId}?autoplay=1&rel=0`}
                 title={activeVideo.title}
@@ -362,7 +362,7 @@ export const MultimediaNodeSection: React.FC = () => {
             <div className="p-4 sm:p-6 space-y-4">
               <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 pb-3 text-xs">
                 <div className="flex items-center gap-2">
-                  <span className="bg-[#d89e28] text-[#0d2137] text-[10px] font-black uppercase tracking-wider px-2 py-0.5">
+                  <span className="bg-[#d89e28] text-[#0d2137] text-[10px] font-black uppercase tracking-wider px-2.5 py-1 rounded-md">
                     {activeVideo.channel}
                   </span>
                   <span className="text-slate-400 font-mono text-[11px]">&bull; {activeVideo.duration}</span>
@@ -392,7 +392,7 @@ export const MultimediaNodeSection: React.FC = () => {
                     href={activeVideo.youtubeUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 bg-red-600 hover:bg-red-700 text-white font-bold text-xs uppercase tracking-wider px-4 py-2.5 transition-colors cursor-pointer min-h-[40px]"
+                    className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white font-bold text-xs uppercase tracking-wider px-5 py-2.5 rounded-xl shadow-md hover:shadow-lg transition-all cursor-pointer min-h-[40px]"
                   >
                     <span>Watch on YouTube</span>
                     <ExternalLink className="w-3.5 h-3.5" />
@@ -400,7 +400,7 @@ export const MultimediaNodeSection: React.FC = () => {
 
                   <button
                     onClick={() => setActiveVideo(null)}
-                    className="flex-1 sm:flex-initial px-4 py-2.5 border border-slate-700 hover:border-slate-500 text-slate-300 hover:text-white font-bold text-xs uppercase tracking-wider transition-colors cursor-pointer min-h-[40px]"
+                    className="flex-1 sm:flex-initial px-5 py-2.5 border border-slate-700 hover:border-slate-500 text-slate-300 hover:text-white font-bold text-xs uppercase tracking-wider rounded-xl transition-all cursor-pointer min-h-[40px]"
                   >
                     Close
                   </button>
@@ -414,14 +414,14 @@ export const MultimediaNodeSection: React.FC = () => {
       {/* Release Reader Modal */}
       {selectedRelease && (
         <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-3 sm:p-4">
-          <div className="bg-white max-w-lg w-full p-5 sm:p-8 shadow-2xl border border-slate-200 relative max-h-[90vh] overflow-y-auto">
+          <div className="bg-white max-w-lg w-full p-5 sm:p-8 shadow-2xl border border-slate-200 relative max-h-[90vh] overflow-y-auto rounded-2xl">
             <div className="flex items-center justify-between mb-4 border-b border-slate-100 pb-3">
               <span className="text-xs font-bold text-[#d89e28] uppercase tracking-wider">
                 {selectedRelease.tag} &bull; {selectedRelease.date}
               </span>
               <button
                 onClick={() => setSelectedRelease(null)}
-                className="w-8 h-8 flex items-center justify-center text-slate-400 hover:text-slate-700 font-bold"
+                className="w-8 h-8 rounded-full flex items-center justify-center text-slate-400 hover:text-slate-700 hover:bg-slate-100 font-bold"
                 aria-label="Close modal"
               >
                 ✕
@@ -430,7 +430,7 @@ export const MultimediaNodeSection: React.FC = () => {
             <h3 className="text-lg sm:text-xl font-extrabold text-[#0d2137] mb-3 leading-snug">
               {selectedRelease.title}
             </h3>
-            <div className="text-xs font-mono text-slate-500 mb-4 bg-slate-50 p-2.5 border border-slate-200">
+            <div className="text-xs font-mono text-slate-500 mb-4 bg-slate-50 p-2.5 border border-slate-200 rounded-lg">
               Wire Vector: {selectedRelease.wire}
             </div>
             <p className="text-xs sm:text-sm text-slate-700 leading-relaxed mb-6">
@@ -439,7 +439,7 @@ export const MultimediaNodeSection: React.FC = () => {
             <div className="flex justify-end">
               <button
                 onClick={() => setSelectedRelease(null)}
-                className="w-full sm:w-auto bg-[#0d2137] text-white font-bold text-xs uppercase px-6 py-3 min-h-[44px]"
+                className="w-full sm:w-auto bg-[#0d2137] hover:bg-[#15304f] text-white font-bold text-xs uppercase px-6 py-3 rounded-xl shadow-sm hover:shadow-md transition-all min-h-[44px]"
               >
                 Close Dispatch
               </button>

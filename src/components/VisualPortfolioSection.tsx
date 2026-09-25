@@ -1,9 +1,5 @@
 import React, { useState } from 'react';
 import { Play, Film, ArrowUpRight, Award, Filter, X, ExternalLink } from 'lucide-react';
-import energyGridImg from '../assets/images/portfolio_energy_grid_1790333519259.jpg';
-import fintechBoardroomImg from '../assets/images/portfolio_fintech_boardroom_1790333533117.jpg';
-import tradeSummitImg from '../assets/images/portfolio_trade_summit_1790333545432.jpg';
-import nairobiSkylineImg from '../assets/images/portfolio_nairobi_skyline_1790333558320.jpg';
 
 export interface PortfolioItem {
   id: string;
@@ -14,10 +10,8 @@ export interface PortfolioItem {
   aspect: string;
   impact: string;
   runtime?: string;
-  thumbnailGradient: string;
-  imageUrl: string;
-  youtubeId?: string;
-  youtubeUrl?: string;
+  youtubeId: string;
+  youtubeUrl: string;
   summary: string;
   deliverables: string[];
 }
@@ -29,11 +23,9 @@ const PORTFOLIO_ITEMS: PortfolioItem[] = [
     category: 'Cinematic Documentaries',
     client: 'East Africa Green Grid Consortium',
     year: '2026',
-    aspect: 'h-52 sm:h-64 lg:h-80',
+    aspect: 'aspect-video',
     impact: '1.8M High-Net-Worth Views',
     runtime: '14:20 min 4K',
-    thumbnailGradient: 'from-[#08172b] via-[#102a45] to-[#1e4168]',
-    imageUrl: energyGridImg,
     youtubeId: 'ScMzIvxBSi4', // Actual YouTube Video ID
     youtubeUrl: 'https://www.youtube.com/watch?v=ScMzIvxBSi4',
     summary:
@@ -46,10 +38,11 @@ const PORTFOLIO_ITEMS: PortfolioItem[] = [
     category: 'Corporate Milestones',
     client: 'Kestrel Distributed Cloud',
     year: '2026',
-    aspect: 'h-48 sm:h-56 lg:h-64',
+    aspect: 'aspect-video',
     impact: '+320% Tier-1 Global Reach',
-    thumbnailGradient: 'from-[#0d2137] via-[#1a385c] to-[#0a192f]',
-    imageUrl: fintechBoardroomImg,
+    runtime: '08:45 min 4K',
+    youtubeId: '1w43-sXyRvg', // Actual YouTube Video ID
+    youtubeUrl: 'https://www.youtube.com/watch?v=1w43-sXyRvg',
     summary:
       'Orchestrated simultaneous embargoed announcements across national and regional media in Nairobi, Kenya, locking 48 Tier-1 press exclusives within 4 hours.',
     deliverables: ['Bloomberg Exclusive', 'WSJ Financial Desk Briefing', 'Broadcast Media Tour'],
@@ -60,11 +53,9 @@ const PORTFOLIO_ITEMS: PortfolioItem[] = [
     category: 'Sovereign Advisory',
     client: 'Pan-African Regional Chamber of Commerce',
     year: '2025',
-    aspect: 'h-52 sm:h-64 lg:h-80',
+    aspect: 'aspect-video',
     impact: '24 Sovereign Signatories Engaged',
-    runtime: 'Keynote Cinema 4K',
-    thumbnailGradient: 'from-[#0a192f] via-[#132c48] to-[#1b3d63]',
-    imageUrl: tradeSummitImg,
+    runtime: '16:30 min 4K',
     youtubeId: 'ysz5S6PUM-U', // Actual YouTube Video ID
     youtubeUrl: 'https://www.youtube.com/watch?v=ysz5S6PUM-U',
     summary:
@@ -77,10 +68,11 @@ const PORTFOLIO_ITEMS: PortfolioItem[] = [
     category: 'Crisis Armor',
     client: 'Equatorial Commercial Bank Ltd',
     year: '2026',
-    aspect: 'h-48 sm:h-56 lg:h-72',
+    aspect: 'aspect-video',
     impact: '< 38 Min Counter-Narrative',
-    thumbnailGradient: 'from-[#071526] via-[#0d2137] to-[#183659]',
-    imageUrl: fintechBoardroomImg,
+    runtime: '11:15 min 4K',
+    youtubeId: '7X8II6J-6mU', // Actual YouTube Video ID
+    youtubeUrl: 'https://www.youtube.com/watch?v=7X8II6J-6mU',
     summary:
       'Neutralized coordinated bot syndicate dissemination targeting capital reserve liquidity rumors; restored market sentiment index to 99.1%.',
     deliverables: ['Central Bank Joint Statement', 'Algorithmic De-amplification', 'Live Broadcast Press Room'],
@@ -91,11 +83,9 @@ const PORTFOLIO_ITEMS: PortfolioItem[] = [
     category: 'Cinematic Documentaries',
     client: 'Nairobi Silicon Corridor Initiative',
     year: '2025',
-    aspect: 'h-52 sm:h-64 lg:h-72',
+    aspect: 'aspect-video',
     impact: 'Nominated Best Corporate Doc',
     runtime: '22:15 min 4K',
-    thumbnailGradient: 'from-[#102a45] via-[#0d2137] to-[#08172b]',
-    imageUrl: nairobiSkylineImg,
     youtubeId: 'LXb3EKWsInQ', // Actual YouTube Video ID
     youtubeUrl: 'https://www.youtube.com/watch?v=LXb3EKWsInQ',
     summary:
@@ -108,10 +98,11 @@ const PORTFOLIO_ITEMS: PortfolioItem[] = [
     category: 'Sovereign Advisory',
     client: 'Financial District Development Board',
     year: '2026',
-    aspect: 'h-48 sm:h-56 lg:h-64',
+    aspect: 'aspect-video',
     impact: '$1.2B Inbound Capital Pipelines',
-    thumbnailGradient: 'from-[#08172b] via-[#15304f] to-[#0a192f]',
-    imageUrl: nairobiSkylineImg,
+    runtime: '18:50 min 4K',
+    youtubeId: '9No-FiEInLA', // Actual YouTube Video ID
+    youtubeUrl: 'https://www.youtube.com/watch?v=9No-FiEInLA',
     summary:
       'Executive storytelling orchestrating bilateral investor symposia in London, Dubai, and Nairobi to attract global financial firms to the Upper Hill corridor.',
     deliverables: ['Investor Dossier', 'Bloomberg Spotlight Feature', 'VIP Press Salon'],
@@ -178,10 +169,10 @@ export const VisualPortfolioSection: React.FC<{ onOpenConsultation: () => void }
               <button
                 key={cat}
                 onClick={() => setActiveFilter(cat)}
-                className={`px-3.5 py-2 text-[11px] sm:text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer rounded-none border whitespace-nowrap shrink-0 min-h-[38px] flex items-center ${
+                className={`px-4 py-2 text-[11px] sm:text-xs font-bold uppercase tracking-wider transition-all duration-150 cursor-pointer rounded-xl border whitespace-nowrap shrink-0 min-h-[38px] flex items-center shadow-xs active:scale-95 ${
                   activeFilter === cat
-                    ? 'bg-[#d89e28] text-[#0d2137] border-[#d89e28]'
-                    : 'bg-[#0d2137] text-slate-300 border-slate-800 hover:border-slate-600 hover:text-white'
+                    ? 'bg-[#d89e28] text-[#0d2137] border-[#d89e28] shadow-md shadow-[#d89e28]/20 font-black'
+                    : 'bg-[#0d2137] text-slate-300 border-slate-800 hover:border-slate-600 hover:text-white hover:bg-[#132c48]'
                 }`}
               >
                 {cat}
@@ -200,45 +191,36 @@ export const VisualPortfolioSection: React.FC<{ onOpenConsultation: () => void }
             <div
               key={item.id}
               onClick={() => handleSelectItem(item)}
-              className="group relative bg-[#0d2137] border border-slate-800 hover:border-[#d89e28] active:scale-[0.99] transition-all duration-200 cursor-pointer flex flex-col justify-between overflow-hidden shadow-lg"
+              className="group relative bg-[#0d2137] border border-slate-800 hover:border-[#d89e28] active:scale-[0.99] transition-all duration-200 cursor-pointer flex flex-col justify-between overflow-hidden shadow-lg rounded-2xl"
             >
-              {/* Media Preview Canvas */}
-              <div className={`w-full ${item.aspect} bg-slate-900 relative flex items-center justify-center overflow-hidden`}>
+              {/* Media Preview Canvas (Authentic YouTube Presentation) */}
+              <div className="w-full aspect-video bg-black relative flex items-center justify-center overflow-hidden">
                 
-                {/* Crystal-clear AI Created Image (100% full opacity, no dark veil) */}
+                {/* Real YouTube Video Thumbnail Image (Zero hover scale/distortion, rock-solid stable) */}
                 <img
-                  src={item.imageUrl}
+                  src={`https://img.youtube.com/vi/${item.youtubeId}/hqdefault.jpg`}
                   alt={item.title}
                   referrerPolicy="no-referrer"
-                  onError={(e) => {
-                    e.currentTarget.style.display = 'none';
-                  }}
-                  className="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300 opacity-100"
+                  className="absolute inset-0 w-full h-full object-cover object-center opacity-100"
                   loading="lazy"
                 />
 
-                {/* YouTube-style Play Button */}
-                {item.runtime ? (
-                  <div className="relative z-10 w-12 h-8.5 sm:w-14 sm:h-10 bg-red-600 group-hover:bg-red-700 text-white rounded-xl flex items-center justify-center shadow-2xl group-hover:scale-110 transition-all duration-200">
-                    <Play className="w-5 h-5 fill-current ml-0.5 text-white" />
-                  </div>
-                ) : (
-                  <div className="relative z-10 w-10 h-8 sm:w-12 sm:h-9 bg-black/75 border border-white/20 text-white flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform backdrop-blur-xs rounded-lg">
-                    <Film className="w-4 h-4" />
-                  </div>
-                )}
+                {/* Classic YouTube Red Play Badge */}
+                <div className="relative z-10 w-13 h-9 sm:w-15 sm:h-10 bg-red-600 group-hover:bg-red-700 text-white rounded-xl flex items-center justify-center shadow-2xl group-hover:scale-110 transition-all duration-200">
+                  <Play className="w-5 h-5 fill-current ml-0.5 text-white" />
+                </div>
 
                 {/* Top Corner Category Badge */}
                 <div className="absolute top-2.5 left-2.5 z-10">
-                  <span className="bg-black/75 backdrop-blur-xs text-white text-[9px] sm:text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-[3px] shadow-xs">
+                  <span className="bg-black/80 backdrop-blur-xs text-white text-[9px] sm:text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md shadow-xs border border-white/10">
                     {item.category}
                   </span>
                 </div>
 
-                {/* YouTube-style Duration Badge (Bottom-Right) */}
+                {/* YouTube Duration Tag (Bottom Right) */}
                 {item.runtime && (
                   <div className="absolute bottom-2.5 right-2.5 z-10">
-                    <span className="bg-black/85 text-white font-mono text-[10px] sm:text-[11px] font-bold px-1.5 py-0.5 rounded-[4px] shadow-sm">
+                    <span className="bg-black/90 text-white font-mono text-[10px] sm:text-[11px] font-bold px-2 py-0.5 rounded-md shadow-md">
                       {item.runtime}
                     </span>
                   </div>
@@ -246,7 +228,7 @@ export const VisualPortfolioSection: React.FC<{ onOpenConsultation: () => void }
 
                 {/* Impact Metric (Bottom-Left) */}
                 <div className="absolute bottom-2.5 left-2.5 z-10 flex items-center gap-1.5 text-xs">
-                  <span className="text-[#d89e28] font-bold flex items-center gap-1 text-[10px] sm:text-[11px] bg-black/85 backdrop-blur-xs px-2 py-0.5 rounded-[3px] border border-white/10 truncate max-w-[190px]">
+                  <span className="text-[#d89e28] font-bold flex items-center gap-1 text-[10px] sm:text-[11px] bg-black/90 backdrop-blur-xs px-2.5 py-1 rounded-md border border-white/10 truncate max-w-[190px]">
                     <Award className="w-3 h-3 sm:w-3.5 sm:h-3.5 shrink-0" />
                     <span>{item.impact}</span>
                   </span>
@@ -267,11 +249,11 @@ export const VisualPortfolioSection: React.FC<{ onOpenConsultation: () => void }
                   </p>
                 </div>
 
-                <div className="mt-4 pt-3 border-t border-slate-800 flex items-center justify-between text-xs text-slate-400">
-                  <span className="text-[#d89e28] font-bold inline-flex items-center gap-1">
-                    Examine Case Dossier <ArrowUpRight className="w-3.5 h-3.5" />
+                <div className="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400">
+                  <span className="text-[#d89e28] font-bold inline-flex items-center gap-1 group-hover:translate-x-0.5 transition-transform">
+                    <span>Watch Documentary</span> <ArrowUpRight className="w-3.5 h-3.5" />
                   </span>
-                  <span className="font-mono text-[11px]">Ref: {item.id}</span>
+                  <span className="font-mono text-[11px] text-slate-400">Ref: {item.id}</span>
                 </div>
               </div>
 
@@ -284,17 +266,17 @@ export const VisualPortfolioSection: React.FC<{ onOpenConsultation: () => void }
       {/* Case Dossier Modal */}
       {selectedItem && (
         <div className="fixed inset-0 z-50 bg-black/85 backdrop-blur-sm flex items-center justify-center p-3 sm:p-4">
-          <div className="bg-[#0a192f] border border-[#d89e28]/40 max-w-2xl w-full text-white shadow-2xl relative max-h-[92vh] overflow-y-auto">
+          <div className="bg-[#0a192f] border border-[#d89e28]/50 max-w-2xl w-full text-white shadow-2xl relative max-h-[92vh] overflow-y-auto rounded-2xl">
             <button
               onClick={handleCloseItem}
-              className="absolute top-4 right-4 z-20 w-9 h-9 flex items-center justify-center bg-[#0d2137] text-slate-400 hover:text-white text-base font-bold border border-slate-700 cursor-pointer"
+              className="absolute top-4 right-4 z-20 w-9 h-9 rounded-full flex items-center justify-center bg-[#0d2137]/90 text-slate-300 hover:text-white text-base font-bold border border-slate-700 hover:border-slate-500 cursor-pointer shadow-md transition-colors"
               aria-label="Close"
             >
               <X className="w-5 h-5" />
             </button>
 
-            {/* Media Area: Either YouTube Player or Crystal-Clear Image with YouTube Play Trigger */}
-            <div className="relative aspect-video w-full bg-slate-900 overflow-hidden">
+            {/* Media Area: Either YouTube Player or Clean YouTube Thumbnail with Play Trigger */}
+            <div className="relative aspect-video w-full bg-black overflow-hidden rounded-t-2xl">
               {isPlayingVideo && selectedItem.youtubeId ? (
                 <iframe
                   src={`https://www.youtube-nocookie.com/embed/${selectedItem.youtubeId}?autoplay=1&rel=0`}
@@ -305,39 +287,34 @@ export const VisualPortfolioSection: React.FC<{ onOpenConsultation: () => void }
                 />
               ) : (
                 <>
-                  {/* Clean, Full-Opacity AI Created Image */}
+                  {/* Clean YouTube Thumbnail Image */}
                   <img
-                    src={selectedItem.imageUrl}
+                    src={`https://img.youtube.com/vi/${selectedItem.youtubeId}/hqdefault.jpg`}
                     alt={selectedItem.title}
                     referrerPolicy="no-referrer"
-                    onError={(e) => {
-                      e.currentTarget.style.display = 'none';
-                    }}
                     className="w-full h-full object-cover"
                   />
                   
                   {/* YouTube Play Button Trigger */}
-                  {selectedItem.youtubeId && (
-                    <button
-                      onClick={() => setIsPlayingVideo(true)}
-                      className="absolute inset-0 flex flex-col items-center justify-center cursor-pointer group"
-                      aria-label="Play video on YouTube"
-                    >
-                      <div className="w-16 h-11 sm:w-20 sm:h-14 bg-red-600 group-hover:bg-red-700 text-white rounded-2xl flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform duration-200">
-                        <Play className="w-8 h-8 fill-current text-white ml-0.5" />
-                      </div>
-                      <span className="mt-3 text-xs font-bold text-white bg-black/85 px-3 py-1 rounded-[4px] shadow-lg">
-                        Play Video &bull; {selectedItem.runtime || '4K Stream'}
-                      </span>
-                    </button>
-                  )}
+                  <button
+                    onClick={() => setIsPlayingVideo(true)}
+                    className="absolute inset-0 flex flex-col items-center justify-center cursor-pointer group bg-black/25 hover:bg-black/35 transition-colors"
+                    aria-label="Play video on YouTube"
+                  >
+                    <div className="w-16 h-11 sm:w-20 sm:h-14 bg-red-600 group-hover:bg-red-700 text-white rounded-2xl flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform duration-200">
+                      <Play className="w-8 h-8 fill-current text-white ml-0.5" />
+                    </div>
+                    <span className="mt-3 text-xs font-bold text-white bg-black/90 px-3 py-1 rounded-md shadow-lg border border-white/10">
+                      Play Video &bull; {selectedItem.runtime || '4K Stream'}
+                    </span>
+                  </button>
                 </>
               )}
             </div>
 
             <div className="p-4 sm:p-8 space-y-4 sm:space-y-6">
               <div>
-                <span className="bg-[#d89e28] text-[#0d2137] text-[9.5px] sm:text-[10px] font-black uppercase tracking-widest px-2 sm:px-2.5 py-0.5 sm:py-1 mb-2 inline-block">
+                <span className="bg-[#d89e28] text-[#0d2137] text-[9.5px] sm:text-[10px] font-black uppercase tracking-widest px-2.5 py-1 rounded-md mb-2 inline-block">
                   {selectedItem.category} &bull; {selectedItem.year}
                 </span>
                 <h2 className="text-xl sm:text-2xl font-black text-white leading-tight">
@@ -384,7 +361,7 @@ export const VisualPortfolioSection: React.FC<{ onOpenConsultation: () => void }
                     href={selectedItem.youtubeUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-1.5 bg-red-600 hover:bg-red-700 text-white font-bold text-xs uppercase tracking-wider px-4 py-3 cursor-pointer transition-colors min-h-[44px]"
+                    className="inline-flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white font-bold text-xs uppercase tracking-wider px-5 py-3 rounded-xl shadow-md hover:shadow-lg transition-all duration-150 cursor-pointer min-h-[44px]"
                   >
                     <span>Watch on YouTube</span>
                     <ExternalLink className="w-3.5 h-3.5" />
@@ -396,7 +373,7 @@ export const VisualPortfolioSection: React.FC<{ onOpenConsultation: () => void }
                     handleCloseItem();
                     onOpenConsultation();
                   }}
-                  className="w-full sm:w-auto bg-[#d89e28] hover:bg-[#c48e22] text-[#0d2137] font-black text-xs uppercase tracking-wider px-6 py-3.5 cursor-pointer shadow-md text-center min-h-[44px] flex items-center justify-center"
+                  className="w-full sm:w-auto bg-gradient-to-r from-[#d89e28] to-[#e5b147] hover:from-[#c48e22] hover:to-[#d89e28] text-[#0d2137] font-black text-xs uppercase tracking-wider px-6 py-3.5 rounded-xl shadow-md hover:shadow-lg hover:-translate-y-0.5 active:scale-[0.98] transition-all duration-150 cursor-pointer text-center min-h-[44px] flex items-center justify-center border border-amber-300/40"
                 >
                   Request Similar Campaign Briefing
                 </button>

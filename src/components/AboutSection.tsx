@@ -69,21 +69,21 @@ export const AboutSection: React.FC<{ onOpenConsultation: () => void }> = ({
 
             {/* Core Values / Stats - Responsive clean cards */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 mt-6 pt-6 border-t border-slate-200">
-              <div className="bg-slate-50 p-4 border border-slate-200">
+              <div className="bg-slate-50 p-4 border border-slate-200/80 rounded-xl shadow-xs">
                 <span className="text-2xl sm:text-3xl font-black text-[#0d2137] block">14+</span>
                 <span className="text-[11px] font-bold text-slate-600 uppercase tracking-wider mt-1 block">
                   Years Operating Pedigree
                 </span>
                 <span className="text-[10px] text-slate-400 block mt-0.5">East Africa &bull; Global Wire Hubs</span>
               </div>
-              <div className="bg-slate-50 p-4 border border-slate-200">
+              <div className="bg-slate-50 p-4 border border-slate-200/80 rounded-xl shadow-xs">
                 <span className="text-2xl sm:text-3xl font-black text-[#d89e28] block">1,200+</span>
                 <span className="text-[11px] font-bold text-slate-600 uppercase tracking-wider mt-1 block">
                   Tier-1 Features Placed
                 </span>
                 <span className="text-[10px] text-slate-400 block mt-0.5">Financial Dailies &amp; Wires</span>
               </div>
-              <div className="bg-slate-50 p-4 border border-slate-200">
+              <div className="bg-slate-50 p-4 border border-slate-200/80 rounded-xl shadow-xs">
                 <span className="text-xl sm:text-2xl font-black text-[#0d2137] block">24/7/365</span>
                 <span className="text-[11px] font-bold text-slate-600 uppercase tracking-wider mt-1 block">
                   Crisis Countermeasures
@@ -95,7 +95,7 @@ export const AboutSection: React.FC<{ onOpenConsultation: () => void }> = ({
             <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
               <button
                 onClick={onOpenConsultation}
-                className="bg-[#d89e28] hover:bg-[#c48e22] text-[#0d2137] font-black text-xs uppercase tracking-wider px-7 py-3.5 rounded-none shadow-xs transition-colors cursor-pointer min-h-[44px] flex items-center justify-center gap-2"
+                className="bg-gradient-to-r from-[#d89e28] to-[#e5b147] hover:from-[#c48e22] hover:to-[#d89e28] text-[#0d2137] font-black text-xs uppercase tracking-wider px-7 py-3.5 rounded-xl shadow-md hover:shadow-lg hover:-translate-y-0.5 active:scale-[0.98] transition-all duration-150 cursor-pointer min-h-[44px] flex items-center justify-center gap-2 border border-amber-300/40"
               >
                 <span>REQUEST BESPOKE PROPOSAL</span>
                 <ArrowRight className="w-3.5 h-3.5" />
@@ -103,7 +103,7 @@ export const AboutSection: React.FC<{ onOpenConsultation: () => void }> = ({
 
               <a
                 href="#services"
-                className="bg-[#0d2137] hover:bg-[#15304f] text-white font-bold text-xs uppercase tracking-wider px-6 py-3.5 rounded-none shadow-xs transition-colors cursor-pointer min-h-[44px] flex items-center justify-center"
+                className="bg-[#0d2137] hover:bg-[#15304f] text-white font-extrabold text-xs uppercase tracking-wider px-6 py-3.5 rounded-xl shadow-sm hover:shadow-md hover:-translate-y-0.5 active:scale-[0.98] transition-all duration-150 cursor-pointer min-h-[44px] flex items-center justify-center border border-slate-700/60"
               >
                 VIEW 3-PILLAR MATRIX
               </a>
