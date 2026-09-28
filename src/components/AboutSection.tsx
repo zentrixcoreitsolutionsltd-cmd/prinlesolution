@@ -850,11 +850,11 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
                   PSIF
                 </div>
                 <div>
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-2 flex-wrap">
                     <strong className="text-white font-extrabold text-sm sm:text-base">
                       Regional Managing Director
                     </strong>
-                    <span className="text-[10px] font-mono text-[#d89e28] bg-amber-400/10 border border-amber-400/20 px-2 py-0.2 rounded-md font-bold">
+                    <span className="text-[10px] font-mono text-[#d89e28] bg-amber-400/10 border border-amber-400/20 px-2 py-0.2 rounded-md font-bold whitespace-nowrap">
                       BOARD EXECUTIVE
                     </span>
                   </div>

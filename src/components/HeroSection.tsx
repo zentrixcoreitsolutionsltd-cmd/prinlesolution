@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
-import { ChevronLeft, ChevronRight, MapPin, ArrowRight, ShieldCheck } from 'lucide-react';
+import { ChevronLeft, ChevronRight, MapPin, ArrowRight, ShieldCheck, Camera, Image as ImageIcon } from 'lucide-react';
+import { HeroImageModal, HeroDisplayMode } from './HeroImageModal.tsx';
 
 interface HeroSectionProps {
   onOpenConsultation: () => void;
@@ -22,6 +23,13 @@ interface SlideItem {
   accentLabel: string;
   badge: string;
 }
+
+export const DEFAULT_HERO_SLIDE_IMAGES: Record<string, string> = {
+  'slide-1': 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1600&q=80',
+  'slide-2': 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=1600&q=80',
+  'slide-3': 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1600&q=80',
+  'slide-4': 'https://images.unsplash.com/photo-1579532537598-459ecdaf39cc?auto=format&fit=crop&w=1600&q=80',
+};
 
 const SLIDES: SlideItem[] = [
   {
@@ -152,6 +160,85 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
   const currentSlide = SLIDES[activeSlide];
   const [animatedStat, setAnimatedStat] = useState<string>(currentSlide.statNumber);
 
+  // Hero Section Image Manager state with LocalStorage persistence
+  const [isImageModalOpen, setIsImageModalOpen] = useState(false);
+  const [customImages, setCustomImages] = useState<Record<string, string>>(() => {
+    try {
+      const saved = localStorage.getItem('prinle_hero_custom_images');
+      if (saved) return JSON.parse(saved);
+    } catch (e) {
+      console.error('Error loading custom hero images:', e);
+    }
+    return DEFAULT_HERO_SLIDE_IMAGES;
+  });
+
+  const [displayMode, setDisplayMode] = useState<HeroDisplayMode>(() => {
+    try {
+      const saved = localStorage.getItem('prinle_hero_display_mode');
+      if (saved === 'card-backdrop' || saved === 'full-banner' || saved === 'split-visual') {
+        return saved;
+      }
+    } catch {}
+    return 'card-backdrop';
+  });
+
+  const [imageOpacity, setImageOpacity] = useState<number>(() => {
+    try {
+      const saved = localStorage.getItem('prinle_hero_image_opacity');
+      if (saved) return Number(saved);
+    } catch {}
+    return 65;
+  });
+
+  const handleSaveImage = (slideId: string, imageUrl: string) => {
+    setCustomImages((prev) => {
+      const next = { ...prev, [slideId]: imageUrl };
+      try {
+        localStorage.setItem('prinle_hero_custom_images', JSON.stringify(next));
+      } catch (e) {}
+      return next;
+    });
+  };
+
+  const handleApplyToAllSlides = (imageUrl: string) => {
+    setCustomImages((prev) => {
+      const next = {
+        ...prev,
+        'slide-1': imageUrl,
+        'slide-2': imageUrl,
+        'slide-3': imageUrl,
+        'slide-4': imageUrl,
+      };
+      try {
+        localStorage.setItem('prinle_hero_custom_images', JSON.stringify(next));
+      } catch (e) {}
+      return next;
+    });
+  };
+
+  const handleResetImages = () => {
+    setCustomImages(DEFAULT_HERO_SLIDE_IMAGES);
+    try {
+      localStorage.removeItem('prinle_hero_custom_images');
+    } catch (e) {}
+  };
+
+  const handleChangeDisplayMode = (mode: HeroDisplayMode) => {
+    setDisplayMode(mode);
+    try {
+      localStorage.setItem('prinle_hero_display_mode', mode);
+    } catch (e) {}
+  };
+
+  const handleChangeOpacity = (opacity: number) => {
+    setImageOpacity(opacity);
+    try {
+      localStorage.setItem('prinle_hero_image_opacity', String(opacity));
+    } catch (e) {}
+  };
+
+  const activeSlideImage = customImages[currentSlide.id] || DEFAULT_HERO_SLIDE_IMAGES[currentSlide.id] || '';
+
   // Smooth number counting animation on slide load or change
   useEffect(() => {
     const raw = currentSlide.statNumber;
@@ -204,6 +291,19 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
     >
+      {/* Full Banner Background Image (Active when displayMode === 'full-banner') */}
+      {displayMode === 'full-banner' && activeSlideImage && (
+        <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+          <img
+            src={activeSlideImage}
+            alt="Hero Background"
+            className="w-full h-full object-cover object-center filter transition-all duration-700"
+            style={{ opacity: (imageOpacity / 100) * 0.3 }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#b8c9dc]/95 via-[#b8c9dc]/85 to-[#b8c9dc]/90" />
+        </div>
+      )}
+
       {/* LEFT CORNER ARROW (Desktop / Tablet) */}
       <button
         onClick={handlePrevSlide}
@@ -286,6 +386,17 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                 />
               ))}
             </div>
+
+            {/* Add / Manage Hero Images Button */}
+            <button
+              onClick={() => setIsImageModalOpen(true)}
+              className="inline-flex items-center gap-1.5 bg-white/95 hover:bg-white text-[#0d2137] hover:text-[#b47a16] px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-lg border border-[#0d2137]/20 text-[9.5px] xs:text-[10px] sm:text-[11px] font-bold shadow-2xs transition-all cursor-pointer group shrink-0"
+              title="Add or Change Images on Hero Section"
+            >
+              <Camera className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#d89e28] group-hover:scale-110 transition-transform" />
+              <span className="hidden xs:inline">Add Images</span>
+              <span className="xs:hidden">Photo</span>
+            </button>
           </div>
         </div>
 
@@ -347,8 +458,33 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
 
           {/* RIGHT COLUMN: Soaring Straight-Line Arrow Graphic + Steps Process */}
           <div className="lg:col-span-7 flex flex-col items-center justify-center w-full h-full min-h-0">
-            <div className="relative w-full h-full max-h-[145px] xs:max-h-[185px] sm:max-h-[250px] lg:max-h-[420px] xl:max-h-[460px] aspect-[16/10] overflow-hidden flex flex-col justify-between shadow-xs border border-[#0d2137]/15 bg-[#b8c9dc]">
+            <div className="relative w-full h-full max-h-[145px] xs:max-h-[185px] sm:max-h-[250px] lg:max-h-[420px] xl:max-h-[460px] aspect-[16/10] overflow-hidden flex flex-col justify-between shadow-xs border border-[#0d2137]/15 bg-[#0a1829]">
               
+              {/* Dynamic Corporate Visual Image Layer (Graphic Backdrop) */}
+              {activeSlideImage && (
+                <div className="absolute inset-0 z-0 overflow-hidden">
+                  <img
+                    src={activeSlideImage}
+                    alt={currentSlide.tagline}
+                    className="w-full h-full object-cover object-center transition-all duration-700"
+                    style={{ opacity: imageOpacity / 100 }}
+                  />
+                  {/* Subtle gradient overlay guaranteeing maximum arrow & stat contrast */}
+                  <div className="absolute inset-0 bg-gradient-to-tr from-[#0a1829]/95 via-[#0d2137]/55 to-[#0a1829]/30" />
+                </div>
+              )}
+
+              {/* Quick Image Action Button on Card */}
+              <button
+                onClick={() => setIsImageModalOpen(true)}
+                className="absolute top-1.5 left-1.5 sm:top-2.5 sm:left-2.5 z-20 bg-[#0d2137]/85 hover:bg-[#0d2137] text-white hover:text-[#d89e28] text-[8px] xs:text-[9px] sm:text-[10px] font-bold px-2 py-0.5 sm:py-1 rounded-lg border border-white/20 backdrop-blur-xs flex items-center gap-1 transition-all cursor-pointer shadow-xs group"
+                title="Change Image for this Slide"
+              >
+                <Camera className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-[#d89e28] group-hover:scale-110 transition-transform" />
+                <span className="hidden xs:inline">Add / Change Image</span>
+                <span className="xs:hidden">Photo</span>
+              </button>
+
               {/* SVG Canvas with Navy Triangular Wedge & Soaring Golden Arrow */}
               <svg
                 viewBox="0 0 800 520"
@@ -512,6 +648,22 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
         </div>
 
       </div>
+
+      {/* Visual Architecture Image Manager Modal */}
+      <HeroImageModal
+        isOpen={isImageModalOpen}
+        onClose={() => setIsImageModalOpen(false)}
+        activeSlideIndex={activeSlide}
+        slides={SLIDES}
+        currentImages={customImages}
+        onSaveImage={handleSaveImage}
+        onApplyToAllSlides={handleApplyToAllSlides}
+        onResetImages={handleResetImages}
+        displayMode={displayMode}
+        onChangeDisplayMode={handleChangeDisplayMode}
+        imageOpacity={imageOpacity}
+        onChangeOpacity={handleChangeOpacity}
+      />
     </section>
   );
 };
