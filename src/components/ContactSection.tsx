@@ -174,17 +174,17 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ preselectedServi
             </div>
 
             {/* Social Media Vectors */}
-            <div className="bg-white border border-slate-200 p-5 shadow-2xs">
+            <div className="bg-white border border-slate-200/90 rounded-2xl p-5 shadow-xs">
               <span className="text-[10px] font-black uppercase tracking-widest text-[#d89e28] block mb-3 font-sans">
                 OFFICIAL SOCIAL MEDIA VECTORS
               </span>
               
-              <div className="grid grid-cols-2 gap-2 text-xs">
+              <div className="grid grid-cols-2 gap-2.5 text-xs">
                 <a
                   href="https://www.linkedin.com/company/prinle-pr-solutionslimited/about/?viewAsMember=true"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 p-2 bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-800 transition-colors"
+                  className="flex items-center gap-2 p-2.5 bg-slate-50 hover:bg-slate-100 border border-slate-200/90 rounded-xl text-slate-800 transition-colors shadow-2xs"
                 >
                   <Linkedin className="w-4 h-4 text-[#0077b5] fill-current" />
                   <span className="font-semibold truncate">LinkedIn</span>
@@ -194,7 +194,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ preselectedServi
                   href="https://x.com/PrinlePR"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 p-2 bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-800 transition-colors"
+                  className="flex items-center gap-2 p-2.5 bg-slate-50 hover:bg-slate-100 border border-slate-200/90 rounded-xl text-slate-800 transition-colors shadow-2xs"
                 >
                   <Twitter className="w-4 h-4 text-[#0d2137] fill-current" />
                   <span className="font-semibold truncate">@PrinlePR</span>
@@ -204,7 +204,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ preselectedServi
                   href="https://youtube.com/@PrinlePRMedia"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 p-2 bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-800 transition-colors"
+                  className="flex items-center gap-2 p-2.5 bg-slate-50 hover:bg-slate-100 border border-slate-200/90 rounded-xl text-slate-800 transition-colors shadow-2xs"
                 >
                   <Youtube className="w-4 h-4 text-red-600" />
                   <span className="font-semibold truncate">@PrinlePRMedia</span>
@@ -214,7 +214,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ preselectedServi
                   href="https://instagram.com/prinle_pr"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 p-2 bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-800 transition-colors"
+                  className="flex items-center gap-2 p-2.5 bg-slate-50 hover:bg-slate-100 border border-slate-200/90 rounded-xl text-slate-800 transition-colors shadow-2xs"
                 >
                   <Instagram className="w-4 h-4 text-pink-600" />
                   <span className="font-semibold truncate">@prinle_pr</span>
@@ -226,17 +226,17 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ preselectedServi
 
           {/* Right Column: Institutional Ingestion Form */}
           <div className="lg:col-span-7">
-            <div className="bg-white p-5 sm:p-8 lg:p-10 border border-slate-200 shadow-md">
+            <div className="bg-white p-5 sm:p-8 lg:p-10 border border-slate-200/90 rounded-2xl shadow-md">
               
               {/* Ingestion Mode Toggle */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-6 border-b border-slate-200 pb-4">
                 <button
                   type="button"
                   onClick={() => setActiveMode('proposal')}
-                  className={`flex items-center justify-center gap-2 px-4 py-3 text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer min-h-[44px] ${
+                  className={`flex items-center justify-center gap-2 px-4 py-3 text-xs font-bold uppercase tracking-wider transition-all cursor-pointer min-h-[44px] rounded-xl shadow-xs ${
                     activeMode === 'proposal'
-                      ? 'bg-[#0d2137] text-white'
-                      : 'bg-slate-100 text-slate-600 hover:text-[#0d2137]'
+                      ? 'bg-[#0d2137] text-white shadow-sm'
+                      : 'bg-slate-100 text-slate-600 hover:text-[#0d2137] hover:bg-slate-200/60'
                   }`}
                 >
                   <FileText className="w-4 h-4 text-[#d89e28]" />
@@ -246,14 +246,14 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ preselectedServi
                 <button
                   type="button"
                   onClick={() => setActiveMode('crisis')}
-                  className={`flex items-center justify-center gap-2 px-4 py-3 text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer min-h-[44px] ${
+                  className={`flex items-center justify-center gap-2 px-4 py-3 text-xs font-bold uppercase tracking-wider transition-all cursor-pointer min-h-[44px] rounded-xl shadow-xs ${
                     activeMode === 'crisis'
-                      ? 'bg-red-900 text-white'
+                      ? 'bg-red-900 text-white shadow-sm'
                       : 'bg-red-50 text-red-700 hover:bg-red-100 border border-red-200'
                   }`}
                 >
                   <AlertTriangle className="w-4 h-4 text-amber-400" />
-                  <span>Sandboxed Crisis Console</span>
+                  <span>Urgent Crisis War Room</span>
                 </button>
               </div>
 
@@ -281,7 +281,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ preselectedServi
                         message: '',
                       });
                     }}
-                    className="w-full sm:w-auto bg-[#d89e28] hover:bg-[#c48e22] text-[#0d2137] text-xs font-black uppercase tracking-wider px-6 py-3 cursor-pointer min-h-[44px]"
+                    className="w-full sm:w-auto bg-[#d89e28] hover:bg-[#c48e22] text-[#0d2137] text-xs font-black uppercase tracking-wider px-6 py-3 cursor-pointer min-h-[44px] rounded-xl shadow-sm hover:shadow-md transition-all"
                   >
                     Submit Another Brief
                   </button>
@@ -302,7 +302,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ preselectedServi
                   </div>
 
                   {errorMsg && (
-                    <div className="p-3 bg-red-50 text-red-700 text-xs border border-red-200">
+                    <div className="p-3 bg-red-50 text-red-700 text-xs border border-red-200 rounded-xl">
                       {errorMsg}
                     </div>
                   )}
@@ -318,7 +318,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ preselectedServi
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                         placeholder="e.g. David Mwangi"
-                        className="w-full px-3.5 py-2.5 text-base sm:text-sm border border-slate-300 rounded-none focus:border-[#d89e28] focus:ring-1 focus:ring-[#d89e28] outline-hidden text-slate-800"
+                        className="w-full px-3.5 py-2.5 text-base sm:text-sm border border-slate-300 rounded-xl focus:border-[#d89e28] focus:ring-2 focus:ring-[#d89e28]/20 outline-hidden text-slate-800 transition-all"
                       />
                     </div>
 
@@ -332,7 +332,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ preselectedServi
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                         placeholder="d.mwangi@enterprise.com"
-                        className="w-full px-3.5 py-2.5 text-base sm:text-sm border border-slate-300 rounded-none focus:border-[#d89e28] focus:ring-1 focus:ring-[#d89e28] outline-hidden text-slate-800"
+                        className="w-full px-3.5 py-2.5 text-base sm:text-sm border border-slate-300 rounded-xl focus:border-[#d89e28] focus:ring-2 focus:ring-[#d89e28]/20 outline-hidden text-slate-800 transition-all"
                       />
                     </div>
                   </div>
@@ -348,7 +348,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ preselectedServi
                         value={formData.company}
                         onChange={(e) => setFormData({ ...formData, company: e.target.value })}
                         placeholder="e.g. Apex Holdings Ltd"
-                        className="w-full px-3.5 py-2.5 text-base sm:text-sm border border-slate-300 rounded-none focus:border-[#d89e28] focus:ring-1 focus:ring-[#d89e28] outline-hidden text-slate-800"
+                        className="w-full px-3.5 py-2.5 text-base sm:text-sm border border-slate-300 rounded-xl focus:border-[#d89e28] focus:ring-2 focus:ring-[#d89e28]/20 outline-hidden text-slate-800 transition-all"
                       />
                     </div>
 
@@ -359,7 +359,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ preselectedServi
                       <select
                         value={formData.service}
                         onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                        className="w-full px-3.5 py-2.5 text-base sm:text-sm border border-slate-300 rounded-none focus:border-[#d89e28] focus:ring-1 focus:ring-[#d89e28] outline-hidden text-slate-800 bg-white"
+                        className="w-full px-3.5 py-2.5 text-base sm:text-sm border border-slate-300 rounded-xl focus:border-[#d89e28] focus:ring-2 focus:ring-[#d89e28]/20 outline-hidden text-slate-800 bg-white transition-all"
                       >
                         <option value="Pillar A: Strategic PR & Consulting">Pillar A: Strategic PR &amp; Consulting</option>
                         <option value="Pillar A: Crisis Countermeasures & Reputation Shielding">Pillar A: Crisis Countermeasures &amp; Shielding</option>
@@ -386,7 +386,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ preselectedServi
                           ? 'Specify imminent press leaks, hostile publications, regulatory friction, or broadcast deadlines...'
                           : 'Outline corporate milestones, transaction timelines, target media channels, or bespoke retainer parameters...'
                       }
-                      className="w-full px-3.5 py-2.5 text-base sm:text-sm border border-slate-300 rounded-none focus:border-[#d89e28] focus:ring-1 focus:ring-[#d89e28] outline-hidden text-slate-800"
+                      className="w-full px-3.5 py-2.5 text-base sm:text-sm border border-slate-300 rounded-xl focus:border-[#d89e28] focus:ring-2 focus:ring-[#d89e28]/20 outline-hidden text-slate-800 transition-all"
                     />
                   </div>
 
@@ -398,10 +398,10 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ preselectedServi
                   <div className="pt-2">
                     <button
                       type="submit"
-                      className={`w-full font-black text-xs uppercase tracking-widest py-3.5 rounded-none shadow-md transition-all cursor-pointer flex items-center justify-center gap-2 min-h-[46px] ${
+                      className={`w-full font-black text-xs uppercase tracking-widest py-3.5 rounded-xl shadow-md hover:shadow-lg hover:-translate-y-0.5 active:scale-[0.98] transition-all cursor-pointer flex items-center justify-center gap-2 min-h-[46px] ${
                         activeMode === 'crisis'
-                          ? 'bg-red-800 hover:bg-red-900 text-white'
-                          : 'bg-[#d89e28] hover:bg-[#c48e22] text-[#0d2137]'
+                          ? 'bg-red-800 hover:bg-red-900 text-white shadow-red-900/20'
+                          : 'bg-gradient-to-r from-[#d89e28] to-[#e5b147] hover:from-[#c48e22] hover:to-[#d89e28] text-[#0d2137] border border-amber-300/40 shadow-amber-400/20'
                       }`}
                     >
                       <Send className="w-3.5 h-3.5" />

@@ -72,15 +72,15 @@ export const ClientEndorsementsSection: React.FC = () => {
           {endorsements.map((item) => (
             <div
               key={item.id}
-              className="bg-white border border-slate-200 p-5 sm:p-8 flex flex-col justify-between shadow-xs hover:shadow-md transition-shadow relative"
+              className="bg-white border border-slate-200/90 rounded-2xl p-5 sm:p-8 flex flex-col justify-between shadow-xs hover:shadow-md transition-shadow relative"
             >
               <div>
                 {/* Header with verified badge and quote icon */}
                 <div className="flex items-center justify-between mb-4 sm:mb-6">
-                  <div className="w-9 h-9 sm:w-10 sm:h-10 bg-[#0d2137] text-[#d89e28] flex items-center justify-center shrink-0">
+                  <div className="w-10 h-10 bg-[#0d2137] text-[#d89e28] rounded-xl flex items-center justify-center shrink-0 shadow-xs">
                     <Quote className="w-4 h-4 sm:w-5 sm:h-5" />
                   </div>
-                  <div className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-emerald-50 border border-emerald-200 text-emerald-800 text-[10px] sm:text-[11px] font-bold uppercase tracking-wider">
+                  <div className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-emerald-50 border border-emerald-200 text-emerald-800 text-[10px] sm:text-[11px] font-bold uppercase tracking-wider rounded-md">
                     <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
                     <span>Verified Institutional</span>
                   </div>
@@ -108,7 +108,7 @@ export const ClientEndorsementsSection: React.FC = () => {
 
                 <button
                   onClick={() => setActiveVideoModal(item)}
-                  className="w-full bg-slate-50 hover:bg-slate-100 active:bg-slate-200 border border-slate-200 text-[#0d2137] text-xs font-bold uppercase tracking-wider py-3 px-3 flex items-center justify-center gap-2 cursor-pointer transition-colors min-h-[44px]"
+                  className="w-full bg-slate-50 hover:bg-slate-100 active:bg-slate-200 border border-slate-200 text-[#0d2137] text-xs font-bold uppercase tracking-wider py-3 px-3 flex items-center justify-center gap-2 cursor-pointer transition-all min-h-[44px] rounded-xl hover:border-[#d89e28] shadow-xs active:scale-[0.99]"
                 >
                   <Play className="w-3.5 h-3.5 fill-current text-[#d89e28]" />
                   <span>Watch Executive Testimonial ({item.videoDuration})</span>
@@ -119,9 +119,9 @@ export const ClientEndorsementsSection: React.FC = () => {
         </div>
 
         {/* Sovereign Trust Strip */}
-        <div className="mt-8 sm:mt-12 bg-[#0d2137] text-white p-5 sm:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 sm:gap-6 border-l-4 border-[#d89e28]">
+        <div className="mt-8 sm:mt-12 bg-[#0d2137] text-white p-5 sm:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 sm:gap-6 border-l-4 border-[#d89e28] rounded-2xl shadow-md">
           <div className="flex items-start sm:items-center gap-3.5 sm:gap-4">
-            <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[#15304f] text-[#d89e28] flex items-center justify-center shrink-0">
+            <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[#15304f] text-[#d89e28] rounded-xl flex items-center justify-center shrink-0 shadow-xs">
               <ShieldCheck className="w-5 h-5 sm:w-6 sm:h-6" />
             </div>
             <div>
@@ -144,10 +144,10 @@ export const ClientEndorsementsSection: React.FC = () => {
       {/* Video Modal with Embedded YouTube Player & Direct Link */}
       {activeVideoModal && (
         <div className="fixed inset-0 z-50 bg-black/85 backdrop-blur-sm flex items-center justify-center p-3 sm:p-4">
-          <div className="bg-[#0a192f] text-white max-w-2xl w-full p-4 sm:p-6 border border-[#d89e28] shadow-2xl relative max-h-[92vh] overflow-y-auto">
+          <div className="bg-[#0a192f] text-white max-w-2xl w-full p-4 sm:p-6 border border-[#d89e28]/50 shadow-2xl relative max-h-[92vh] overflow-y-auto rounded-2xl">
             <button
               onClick={() => setActiveVideoModal(null)}
-              className="absolute top-3.5 right-3.5 z-20 w-8 h-8 flex items-center justify-center bg-[#0d2137] text-slate-400 hover:text-white text-xl font-bold border border-slate-700 cursor-pointer"
+              className="absolute top-3.5 right-3.5 z-20 w-9 h-9 rounded-full flex items-center justify-center bg-[#0d2137]/90 text-slate-300 hover:text-white text-base font-bold border border-slate-700 hover:border-slate-500 cursor-pointer shadow-md transition-colors"
               aria-label="Close"
             >
               <X className="w-5 h-5" />
@@ -163,7 +163,7 @@ export const ClientEndorsementsSection: React.FC = () => {
             </p>
 
             {/* Embedded YouTube Player */}
-            <div className="aspect-video w-full bg-black border border-slate-800 relative mb-4">
+            <div className="aspect-video w-full bg-black border border-slate-800 relative mb-4 rounded-xl overflow-hidden">
               <iframe
                 src={`https://www.youtube-nocookie.com/embed/${activeVideoModal.youtubeId}?autoplay=1&rel=0`}
                 title={`${activeVideoModal.author} Testimonial`}
@@ -173,7 +173,7 @@ export const ClientEndorsementsSection: React.FC = () => {
               />
             </div>
 
-            <p className="text-xs text-slate-300 italic mb-4 leading-relaxed bg-[#0d2137] p-3 border-l-2 border-[#d89e28]">
+            <p className="text-xs text-slate-300 italic mb-4 leading-relaxed bg-[#0d2137] p-3 border-l-2 border-[#d89e28] rounded-r-xl">
               &ldquo;{activeVideoModal.quote}&rdquo;
             </p>
 
@@ -182,7 +182,7 @@ export const ClientEndorsementsSection: React.FC = () => {
                 href={activeVideoModal.youtubeUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-1.5 bg-red-600 hover:bg-red-700 text-white font-bold text-xs uppercase tracking-wider px-4 py-2.5 transition-colors cursor-pointer min-h-[40px]"
+                className="inline-flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white font-bold text-xs uppercase tracking-wider px-5 py-2.5 rounded-xl shadow-md hover:shadow-lg transition-all cursor-pointer min-h-[40px]"
               >
                 <span>Watch on YouTube</span>
                 <ExternalLink className="w-3.5 h-3.5" />
@@ -190,7 +190,7 @@ export const ClientEndorsementsSection: React.FC = () => {
 
               <button
                 onClick={() => setActiveVideoModal(null)}
-                className="bg-[#d89e28] hover:bg-[#c48e22] text-[#0d2137] font-black text-xs uppercase tracking-wider py-2.5 px-6 cursor-pointer min-h-[40px]"
+                className="bg-gradient-to-r from-[#d89e28] to-[#e5b147] hover:from-[#c48e22] hover:to-[#d89e28] text-[#0d2137] font-black text-xs uppercase tracking-wider py-2.5 px-6 rounded-xl shadow-md hover:shadow-lg transition-all cursor-pointer min-h-[40px] border border-amber-300/40"
               >
                 Close Testimonial
               </button>

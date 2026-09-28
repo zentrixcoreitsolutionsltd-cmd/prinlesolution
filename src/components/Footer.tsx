@@ -50,7 +50,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenConsultation }
                 target="_blank"
                 rel="noreferrer"
                 aria-label="Official WhatsApp Node"
-                className="h-9 px-3 bg-[#25D366]/20 border border-[#25D366]/50 text-[#25D366] flex items-center justify-center gap-1.5 hover:bg-[#25D366] hover:text-[#0d2137] transition-colors font-bold text-xs"
+                className="h-9 px-3.5 bg-[#25D366]/15 border border-[#25D366]/40 text-[#25D366] rounded-xl flex items-center justify-center gap-1.5 hover:bg-[#25D366] hover:text-[#0d2137] transition-all font-bold text-xs shadow-2xs hover:shadow-sm hover:-translate-y-0.5"
               >
                 <MessageCircle className="w-3.5 h-3.5 fill-current" />
                 <span>WhatsApp: 0725 128 059</span>
@@ -62,7 +62,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenConsultation }
                 rel="noreferrer"
                 aria-label="LinkedIn: Prinle PR Solutions Ltd"
                 title="LinkedIn"
-                className="w-9 h-9 bg-slate-800/80 border border-slate-700 flex items-center justify-center text-slate-300 hover:text-white hover:bg-[#0077b5] transition-colors"
+                className="w-9 h-9 bg-slate-800/80 border border-slate-700/80 rounded-xl flex items-center justify-center text-slate-300 hover:text-white hover:bg-[#0077b5] hover:border-[#0077b5] transition-all shadow-2xs hover:-translate-y-0.5"
               >
                 <Linkedin className="w-4 h-4 fill-current" />
               </a>
@@ -73,7 +73,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenConsultation }
                 rel="noreferrer"
                 aria-label="X / Twitter: @PrinlePR"
                 title="X (Twitter): @PrinlePR"
-                className="w-9 h-9 bg-slate-800/80 border border-slate-700 flex items-center justify-center text-slate-300 hover:text-white hover:bg-[#0d2137] transition-colors"
+                className="w-9 h-9 bg-slate-800/80 border border-slate-700/80 rounded-xl flex items-center justify-center text-slate-300 hover:text-white hover:bg-[#15304f] hover:border-slate-500 transition-all shadow-2xs hover:-translate-y-0.5"
               >
                 <Twitter className="w-4 h-4 fill-current" />
               </a>
@@ -84,7 +84,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenConsultation }
                 rel="noreferrer"
                 aria-label="YouTube: @PrinlePRMedia"
                 title="YouTube: @PrinlePRMedia"
-                className="w-9 h-9 bg-slate-800/80 border border-slate-700 flex items-center justify-center text-slate-300 hover:text-white hover:bg-red-600 transition-colors"
+                className="w-9 h-9 bg-slate-800/80 border border-slate-700/80 rounded-xl flex items-center justify-center text-slate-300 hover:text-white hover:bg-red-600 hover:border-red-600 transition-all shadow-2xs hover:-translate-y-0.5"
               >
                 <Youtube className="w-4 h-4" />
               </a>
@@ -95,7 +95,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenConsultation }
                 rel="noreferrer"
                 aria-label="Instagram: @prinle_pr"
                 title="Instagram: @prinle_pr"
-                className="w-9 h-9 bg-slate-800/80 border border-slate-700 flex items-center justify-center text-slate-300 hover:text-white hover:bg-pink-600 transition-colors"
+                className="w-9 h-9 bg-slate-800/80 border border-slate-700/80 rounded-xl flex items-center justify-center text-slate-300 hover:text-white hover:bg-gradient-to-tr hover:from-amber-600 hover:to-pink-600 hover:border-pink-500 transition-all shadow-2xs hover:-translate-y-0.5"
               >
                 <Instagram className="w-4 h-4" />
               </a>
@@ -219,7 +219,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenConsultation }
             <div className="mt-5 pt-4 border-t border-slate-800">
               <button
                 onClick={onOpenConsultation}
-                className="w-full bg-[#d89e28] hover:bg-[#c48e22] text-[#0d2137] font-black text-xs uppercase tracking-wider py-3 px-4 transition-colors cursor-pointer min-h-[42px] flex items-center justify-center gap-2"
+                className="w-full bg-gradient-to-r from-[#d89e28] to-[#e5b147] hover:from-[#c48e22] hover:to-[#d89e28] text-[#0d2137] font-black text-xs uppercase tracking-wider py-3.5 px-4 rounded-xl shadow-md hover:shadow-lg hover:-translate-y-0.5 active:scale-[0.98] transition-all cursor-pointer min-h-[44px] flex items-center justify-center gap-2 border border-amber-300/40"
               >
                 <Lock className="w-3.5 h-3.5" />
                 <span>REQUEST BESPOKE PROPOSAL</span>

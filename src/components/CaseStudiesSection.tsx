@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ExternalLink, ArrowUpRight, CheckCircle2, X } from 'lucide-react';
+import { AnimatedCounter } from './AnimatedCounter.tsx';
 
 export const CaseStudiesSection: React.FC<{ onOpenConsultation: () => void }> = ({
   onOpenConsultation,
@@ -64,7 +65,8 @@ export const CaseStudiesSection: React.FC<{ onOpenConsultation: () => void }> = 
   ];
 
   return (
-    <section id="cases" className="py-12 sm:py-16 lg:py-24 bg-slate-50 border-t border-b border-slate-200/80">
+    <section id="case-studies" className="py-12 sm:py-16 lg:py-24 bg-slate-50 border-t border-b border-slate-200/80 relative">
+      <span id="cases" className="absolute -top-24 pointer-events-none" aria-hidden="true" />
       <div className="max-w-7xl mx-auto px-4 sm:px-8">
         
         {/* Section Heading */}
@@ -87,7 +89,7 @@ export const CaseStudiesSection: React.FC<{ onOpenConsultation: () => void }> = 
           {cases.map((item) => (
             <div
               key={item.id}
-              className="bg-white rounded-none p-5 sm:p-7 border border-slate-200/80 shadow-xs hover:shadow-md transition-all flex flex-col justify-between"
+              className="bg-white rounded-2xl p-5 sm:p-7 border border-slate-200/90 shadow-xs hover:shadow-md transition-all flex flex-col justify-between"
             >
               <div>
                 <span className="text-[11px] font-bold text-[#d89e28] tracking-wider uppercase block mb-2">
@@ -101,10 +103,10 @@ export const CaseStudiesSection: React.FC<{ onOpenConsultation: () => void }> = 
                 </p>
 
                 {/* Key Metrics */}
-                <div className="grid grid-cols-2 gap-3 py-3.5 border-t border-b border-slate-100 bg-slate-50/70 px-3 mb-5 sm:mb-6">
+                <div className="grid grid-cols-2 gap-3 py-3.5 border-t border-b border-slate-100 bg-slate-50/70 px-3 mb-5 sm:mb-6 rounded-xl">
                   <div>
                     <span className="block text-xl sm:text-2xl font-black text-[#0d2137] tracking-tight font-sans">
-                      {item.statPrimary}
+                      <AnimatedCounter value={item.statPrimary} duration={1800} />
                     </span>
                     <span className="block text-[9.5px] sm:text-[10px] font-bold text-slate-500 uppercase tracking-wider">
                       {item.statLabel}
@@ -112,7 +114,7 @@ export const CaseStudiesSection: React.FC<{ onOpenConsultation: () => void }> = 
                   </div>
                   <div>
                     <span className="block text-xl sm:text-2xl font-black text-[#d89e28] tracking-tight font-sans">
-                      {item.statSecondary}
+                      <AnimatedCounter value={item.statSecondary} duration={2000} />
                     </span>
                     <span className="block text-[9.5px] sm:text-[10px] font-bold text-slate-500 uppercase tracking-wider">
                       {item.statSecondaryLabel}
@@ -123,7 +125,7 @@ export const CaseStudiesSection: React.FC<{ onOpenConsultation: () => void }> = 
 
               <button
                 onClick={() => setSelectedCase(item)}
-                className="w-full inline-flex items-center justify-between text-xs font-bold text-[#0d2137] hover:text-[#d89e28] transition-colors pt-2 cursor-pointer min-h-[40px]"
+                className="w-full inline-flex items-center justify-between text-xs font-bold text-[#0d2137] hover:text-[#d89e28] transition-colors pt-2 cursor-pointer min-h-[40px] px-2 py-1.5 rounded-lg hover:bg-slate-50"
               >
                 <span>Read Case Brief</span>
                 <ArrowUpRight className="w-4 h-4 text-[#d89e28]" />
@@ -137,10 +139,10 @@ export const CaseStudiesSection: React.FC<{ onOpenConsultation: () => void }> = 
       {/* Case Study Detail Modal */}
       {selectedCase && (
         <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-3 sm:p-4">
-          <div className="bg-white rounded-none max-w-xl w-full p-5 sm:p-8 shadow-2xl border border-slate-100 relative max-h-[90vh] overflow-y-auto">
+          <div className="bg-white rounded-2xl max-w-xl w-full p-5 sm:p-8 shadow-2xl border border-slate-100 relative max-h-[90vh] overflow-y-auto">
             <button
               onClick={() => setSelectedCase(null)}
-              className="absolute top-4 right-4 w-9 h-9 flex items-center justify-center text-slate-400 hover:text-slate-700 p-1 text-lg font-bold"
+              className="absolute top-4 right-4 w-9 h-9 rounded-full flex items-center justify-center text-slate-400 hover:text-slate-700 hover:bg-slate-100 p-1 text-lg font-bold"
               aria-label="Close"
             >
               <X className="w-5 h-5" />
@@ -156,7 +158,7 @@ export const CaseStudiesSection: React.FC<{ onOpenConsultation: () => void }> = 
               {selectedCase.headline}
             </p>
 
-            <div className="grid grid-cols-2 gap-3 sm:gap-4 p-3.5 sm:p-4 bg-slate-50 border border-slate-200/60 mb-5 sm:mb-6">
+            <div className="grid grid-cols-2 gap-3 sm:gap-4 p-3.5 sm:p-4 bg-slate-50 border border-slate-200/60 mb-5 sm:mb-6 rounded-xl">
               <div>
                 <span className="text-2xl sm:text-3xl font-black text-[#0d2137]">{selectedCase.statPrimary}</span>
                 <span className="text-[10px] sm:text-xs text-slate-500 block uppercase font-medium mt-0.5">
@@ -200,13 +202,13 @@ export const CaseStudiesSection: React.FC<{ onOpenConsultation: () => void }> = 
                   setSelectedCase(null);
                   onOpenConsultation();
                 }}
-                className="flex-1 bg-[#d89e28] hover:bg-[#c48e22] text-[#0d2137] font-black text-xs uppercase tracking-wider py-3.5 px-4 text-center cursor-pointer min-h-[44px] flex items-center justify-center"
+                className="flex-1 bg-gradient-to-r from-[#d89e28] to-[#e5b147] hover:from-[#c48e22] hover:to-[#d89e28] text-[#0d2137] font-black text-xs uppercase tracking-wider py-3.5 px-4 text-center cursor-pointer min-h-[44px] flex items-center justify-center rounded-xl shadow-md hover:shadow-lg hover:-translate-y-0.5 active:scale-[0.98] transition-all border border-amber-300/40"
               >
                 Discuss A Similar Campaign
               </button>
               <button
                 onClick={() => setSelectedCase(null)}
-                className="px-4 py-3 border border-slate-200 text-slate-600 hover:text-slate-900 text-xs font-bold min-h-[44px] flex items-center justify-center cursor-pointer"
+                className="px-5 py-3 border border-slate-200 text-slate-600 hover:text-slate-900 text-xs font-bold min-h-[44px] flex items-center justify-center cursor-pointer rounded-xl transition-colors"
               >
                 Close
               </button>

@@ -100,8 +100,11 @@ export default function App() {
         />
       </div>
 
-      {/* 1. Top Bar */}
-      <TopBar />
+      {/* 1. Top Bar with Instant Search Feature */}
+      <TopBar
+        onNavigate={handleNavigate}
+        onSelectService={(serviceName) => handleOpenConsultation(serviceName)}
+      />
 
       {/* 2. Main Navigation Bar with Blueprint Items */}
       <Navbar

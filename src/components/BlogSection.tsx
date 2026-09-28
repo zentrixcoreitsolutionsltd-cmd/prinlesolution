@@ -106,10 +106,10 @@ We break down the systematic cadence of executive thought leadership: curating p
       {/* Article Detail Modal */}
       {activeArticle && (
         <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-3 sm:p-4">
-          <div className="bg-white rounded-none max-w-2xl w-full p-5 sm:p-8 lg:p-10 shadow-2xl border border-slate-100 relative max-h-[90vh] overflow-y-auto">
+          <div className="bg-white rounded-2xl max-w-2xl w-full p-5 sm:p-8 lg:p-10 shadow-2xl border border-slate-100 relative max-h-[90vh] overflow-y-auto">
             <button
               onClick={() => setActiveArticle(null)}
-              className="absolute top-4 right-4 w-9 h-9 flex items-center justify-center text-slate-400 hover:text-slate-700 font-bold"
+              className="absolute top-4 right-4 w-9 h-9 rounded-full flex items-center justify-center text-slate-400 hover:text-slate-700 hover:bg-slate-100 font-bold"
               aria-label="Close"
             >
               <X className="w-5 h-5" />
@@ -140,7 +140,7 @@ We break down the systematic cadence of executive thought leadership: curating p
             <div className="flex justify-end">
               <button
                 onClick={() => setActiveArticle(null)}
-                className="w-full sm:w-auto bg-[#0d2137] hover:bg-[#15304f] text-white text-xs font-bold uppercase tracking-wider px-6 py-3 cursor-pointer min-h-[44px]"
+                className="w-full sm:w-auto bg-[#0d2137] hover:bg-[#15304f] text-white text-xs font-bold uppercase tracking-wider px-6 py-3 rounded-xl shadow-sm hover:shadow-md transition-all cursor-pointer min-h-[44px]"
               >
                 Close Article
               </button>

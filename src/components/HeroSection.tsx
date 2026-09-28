@@ -150,6 +150,47 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
   };
 
   const currentSlide = SLIDES[activeSlide];
+  const [animatedStat, setAnimatedStat] = useState<string>(currentSlide.statNumber);
+
+  // Smooth number counting animation on slide load or change
+  useEffect(() => {
+    const raw = currentSlide.statNumber;
+    const match = raw.match(/^([^\d.-]*)([\d,]+(?:\.\d+)?)(.*)$/);
+    if (!match) {
+      setAnimatedStat(raw);
+      return;
+    }
+
+    const prefix = match[1];
+    const target = parseFloat(match[2].replace(/,/g, ''));
+    const suffix = match[3];
+
+    if (isNaN(target)) {
+      setAnimatedStat(raw);
+      return;
+    }
+
+    let animationFrameId: number;
+    const startTime = performance.now();
+    const duration = 1200;
+
+    const animate = (currentTime: number) => {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+      const currentVal = Math.round(target * eased);
+      setAnimatedStat(`${prefix}${currentVal}${suffix}`);
+
+      if (progress < 1) {
+        animationFrameId = requestAnimationFrame(animate);
+      } else {
+        setAnimatedStat(raw);
+      }
+    };
+
+    animationFrameId = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(animationFrameId);
+  }, [activeSlide, currentSlide.statNumber]);
 
   return (
     <section
@@ -339,9 +380,9 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                   fill="url(#navyWedgeGradient)"
                 />
 
-                {/* Stat Text directly placed on Navy Wedge */}
+                {/* Stat Text directly placed on Navy Wedge with counting animation */}
                 <text x="32" y="85" fill="#ffffff" fontSize="52" fontWeight="900" fontFamily="sans-serif">
-                  {currentSlide.statNumber}
+                  {animatedStat}
                 </text>
                 <text x="34" y="118" fill="#ffffff" fontSize="12" fontWeight="800" letterSpacing="0.05em" fontFamily="sans-serif">
                   {currentSlide.statLabel}

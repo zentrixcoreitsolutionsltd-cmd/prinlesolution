@@ -44,10 +44,10 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-3 sm:p-4">
-      <div className="bg-white rounded-none max-w-lg w-full p-5 sm:p-8 shadow-2xl border border-slate-200 relative max-h-[92vh] overflow-y-auto">
+      <div className="bg-white rounded-2xl max-w-lg w-full p-5 sm:p-8 shadow-2xl border border-slate-200 relative max-h-[92vh] overflow-y-auto">
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 w-10 h-10 flex items-center justify-center text-slate-400 hover:text-slate-700 active:bg-slate-100 font-bold"
+          className="absolute top-4 right-4 w-9 h-9 rounded-full flex items-center justify-center text-slate-400 hover:text-slate-700 hover:bg-slate-100 font-bold transition-colors"
           aria-label="Close modal"
         >
           <X className="w-5 h-5" />
@@ -66,7 +66,7 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
             </p>
             <button
               onClick={onClose}
-              className="w-full sm:w-auto bg-[#0d2137] hover:bg-[#15304f] text-white text-xs font-bold uppercase tracking-wider px-6 py-3 rounded-none min-h-[44px]"
+              className="w-full sm:w-auto bg-[#0d2137] hover:bg-[#15304f] text-white text-xs font-bold uppercase tracking-wider px-6 py-3 rounded-xl min-h-[44px] shadow-sm hover:shadow-md transition-all cursor-pointer"
             >
               Close Portal
             </button>
@@ -78,7 +78,7 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
             </div>
             
             <div className="mb-4 sm:mb-5">
-              <div className="inline-flex items-center gap-1.5 text-[10px] font-bold text-[#d89e28] uppercase tracking-wider bg-amber-50 px-2 py-0.5 border border-amber-200/60 mb-1.5">
+              <div className="inline-flex items-center gap-1.5 text-[10px] font-bold text-[#d89e28] uppercase tracking-wider bg-amber-50 px-2.5 py-1 rounded-md border border-amber-200/60 mb-1.5">
                 <Lock className="w-3 h-3" />
                 <span>Custom Retainer Assessment Ingestion Portal</span>
               </div>
@@ -91,7 +91,7 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
             </div>
 
             {errorMsg && (
-              <div className="p-2.5 mb-4 bg-red-50 text-red-700 text-xs border border-red-200">
+              <div className="p-3 mb-4 bg-red-50 text-red-700 text-xs border border-red-200 rounded-xl">
                 {errorMsg}
               </div>
             )}
@@ -107,7 +107,7 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   placeholder="e.g. Sarah Kensington"
-                  className="w-full px-3 py-2 text-base sm:text-sm border border-slate-300 rounded-none focus:border-[#d89e28] focus:ring-1 focus:ring-[#d89e28] outline-hidden text-slate-800"
+                  className="w-full px-3.5 py-2.5 text-base sm:text-sm border border-slate-300 rounded-xl focus:border-[#d89e28] focus:ring-2 focus:ring-[#d89e28]/20 outline-hidden text-slate-800 transition-all"
                 />
               </div>
 
@@ -121,7 +121,7 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   placeholder="s.kensington@enterprise.com"
-                  className="w-full px-3 py-2 text-base sm:text-sm border border-slate-300 rounded-none focus:border-[#d89e28] focus:ring-1 focus:ring-[#d89e28] outline-hidden text-slate-800"
+                  className="w-full px-3.5 py-2.5 text-base sm:text-sm border border-slate-300 rounded-xl focus:border-[#d89e28] focus:ring-2 focus:ring-[#d89e28]/20 outline-hidden text-slate-800 transition-all"
                 />
               </div>
 
@@ -136,7 +136,7 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
                     value={formData.company}
                     onChange={(e) => setFormData({ ...formData, company: e.target.value })}
                     placeholder="e.g. Blue-Chip Holdings"
-                    className="w-full px-3 py-2 text-base sm:text-sm border border-slate-300 rounded-none focus:border-[#d89e28] focus:ring-1 focus:ring-[#d89e28] outline-hidden text-slate-800"
+                    className="w-full px-3.5 py-2.5 text-base sm:text-sm border border-slate-300 rounded-xl focus:border-[#d89e28] focus:ring-2 focus:ring-[#d89e28]/20 outline-hidden text-slate-800 transition-all"
                   />
                 </div>
 
@@ -147,7 +147,7 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
                   <select
                     value={formData.service}
                     onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                    className="w-full px-3 py-2 text-base sm:text-sm border border-slate-300 rounded-none focus:border-[#d89e28] focus:ring-1 focus:ring-[#d89e28] outline-hidden text-slate-800 bg-white"
+                    className="w-full px-3.5 py-2.5 text-base sm:text-sm border border-slate-300 rounded-xl focus:border-[#d89e28] focus:ring-2 focus:ring-[#d89e28]/20 outline-hidden text-slate-800 bg-white transition-all"
                   >
                     <option value="Pillar A: Strategic PR & Consulting">Pillar A: Strategic PR &amp; Consulting</option>
                     <option value="Pillar A: Crisis Countermeasures & Reputation Shielding">Pillar A: Crisis Countermeasures</option>
@@ -170,7 +170,7 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
                   value={formData.brief}
                   onChange={(e) => setFormData({ ...formData, brief: e.target.value })}
                   placeholder="Detail corporate milestones, transaction timelines, target media channels, or bespoke retainer needs..."
-                  className="w-full px-3 py-2 text-base sm:text-sm border border-slate-300 rounded-none focus:border-[#d89e28] focus:ring-1 focus:ring-[#d89e28] outline-hidden text-slate-800"
+                  className="w-full px-3.5 py-2.5 text-base sm:text-sm border border-slate-300 rounded-xl focus:border-[#d89e28] focus:ring-2 focus:ring-[#d89e28]/20 outline-hidden text-slate-800 transition-all"
                 />
               </div>
 
@@ -182,7 +182,7 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
               <div className="pt-2">
                 <button
                   type="submit"
-                  className="w-full bg-[#d89e28] hover:bg-[#c48e22] active:scale-[0.99] text-[#0d2137] font-black text-xs uppercase tracking-widest py-3.5 rounded-none shadow-md transition-all cursor-pointer flex items-center justify-center gap-2 min-h-[46px]"
+                  className="w-full bg-gradient-to-r from-[#d89e28] to-[#e5b147] hover:from-[#c48e22] hover:to-[#d89e28] active:scale-[0.98] text-[#0d2137] font-black text-xs uppercase tracking-widest py-3.5 rounded-xl shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all cursor-pointer flex items-center justify-center gap-2 min-h-[46px] border border-amber-300/40"
                 >
                   <Send className="w-3.5 h-3.5" />
                   <span>TRANSMIT PROPOSAL BRIEF</span>

@@ -85,12 +85,12 @@ export const DownloadsRepositorySection: React.FC = () => {
             return (
               <div
                 key={item.id}
-                className="bg-slate-50 border border-slate-200 p-5 sm:p-7 flex flex-col justify-between hover:border-[#d89e28] transition-colors shadow-2xs"
+                className="bg-slate-50 border border-slate-200/90 rounded-2xl p-5 sm:p-7 flex flex-col justify-between hover:border-[#d89e28] transition-all shadow-xs hover:shadow-md"
               >
                 <div>
                   <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
                     <div className="flex items-center gap-2">
-                      <span className="text-[9.5px] sm:text-[10px] font-black uppercase tracking-widest bg-[#0d2137] text-white px-2 sm:px-2.5 py-1">
+                      <span className="text-[9.5px] sm:text-[10px] font-black uppercase tracking-widest bg-[#0d2137] text-white px-2.5 py-1 rounded-md">
                         {item.type}
                       </span>
                       <span className="text-xs font-mono text-slate-500 font-semibold">
@@ -98,7 +98,7 @@ export const DownloadsRepositorySection: React.FC = () => {
                       </span>
                     </div>
 
-                    <span className="inline-flex items-center gap-1 text-[10px] sm:text-[11px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5">
+                    <span className="inline-flex items-center gap-1 text-[10px] sm:text-[11px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-md">
                       <Shield className="w-3 h-3 text-emerald-600" />
                       {item.securityBadge}
                     </span>
@@ -121,12 +121,12 @@ export const DownloadsRepositorySection: React.FC = () => {
                   <button
                     onClick={() => handleDownload(item.id, item.title)}
                     disabled={isDownloading}
-                    className={`w-full sm:w-auto text-xs font-bold uppercase tracking-wider px-4 py-3 flex items-center justify-center gap-2 transition-all cursor-pointer min-h-[44px] ${
+                    className={`w-full sm:w-auto text-xs font-bold uppercase tracking-wider px-5 py-3 rounded-xl flex items-center justify-center gap-2 transition-all cursor-pointer min-h-[44px] shadow-sm ${
                       isDone
-                        ? 'bg-emerald-600 text-white'
+                        ? 'bg-emerald-600 text-white shadow-md'
                         : isDownloading
                         ? 'bg-slate-300 text-slate-600 cursor-wait'
-                        : 'bg-[#d89e28] hover:bg-[#c48e22] text-[#0d2137]'
+                        : 'bg-gradient-to-r from-[#d89e28] to-[#e5b147] hover:from-[#c48e22] hover:to-[#d89e28] text-[#0d2137] shadow-md hover:shadow-lg hover:-translate-y-0.5 active:scale-[0.98] border border-amber-300/40'
                     }`}
                   >
                     {isDone ? (
@@ -153,7 +153,7 @@ export const DownloadsRepositorySection: React.FC = () => {
         </div>
 
         {/* Compliance Notice */}
-        <div className="mt-6 sm:mt-8 p-4 bg-slate-100 border border-slate-200 flex items-start gap-3 text-xs text-slate-600">
+        <div className="mt-6 sm:mt-8 p-5 bg-slate-100 border border-slate-200/90 rounded-2xl flex items-start gap-3.5 text-xs text-slate-600 shadow-2xs">
           <AlertCircle className="w-4 h-4 text-[#d89e28] shrink-0 mt-0.5" />
           <p className="leading-relaxed">
             <strong className="text-[#0d2137] font-bold uppercase">Commercial Settlement Policy:</strong> E-commerce checkouts and mobile wallet shops are strictly disabled. Prinle PR Solutions Ltd executes all institutional retainers, broadcast production contracts, and advisory services via formal corporate B2B wire invoicing transfers (SWIFT / RTGS).
